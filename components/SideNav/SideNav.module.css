@@ -1,0 +1,89 @@
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100svh;
+    max-width: 400px;
+    opacity: 0;
+    display: flex;
+    pointer-events: none;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f1f1e3;
+    transform: translateX(400px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	transition: all ease-in-out 0.2s;
+    z-index: 999;
+}
+.sidebar.sidebarVisible{
+	opacity: 1;
+	pointer-events: all;
+    transform: translateX(0);
+}
+.sidebarLinks{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: var();
+}
+.menuIconClose{
+    width: 100%;
+    display: flex; /* display: none; */
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+    color: var(--main-color);
+}
+.menuIconClose.showX{
+    /* display: flex; kada setVisible proradi vratiti*/ 
+}
+.sideNav{
+    width: 100%;
+    height: fit-content;
+}
+.sideNav ul {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.sideNav ul li {
+    width: 100%;
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+.sideNavProfile{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0 20px 0;
+}
+.primaryButton, .secondaryButton{
+    width: 300px;
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.primaryButton:hover{
+    color: var(--main-color);
+}
+/* Small devices (portrait tablets and large phones, 600px) */
+@media only screen and (max-width: 600px) {
+    .sidebar{
+        max-width: none;
+    }
+}

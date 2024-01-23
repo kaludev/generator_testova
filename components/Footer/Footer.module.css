@@ -1,0 +1,176 @@
+.footer{
+    width: 100%;
+    margin: auto;
+    background-color: #fff;
+}
+
+.footerMain {
+    width: 70%;
+    margin: auto;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.footerDevider {
+    width: 70%;
+    height: 1px;
+    margin: 30px auto 30px auto;
+    background-color: #F5F5F5;
+    border: none;
+}
+
+.darkDevider {
+    background-color: #000;
+    margin-bottom: 60px;
+}
+
+.footerCol {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.footerLogo {
+    width: 80%;
+}
+
+.footerLink {
+    margin: 7px 5px 7px 2px;
+}
+
+.footerLink a {
+    color: #000;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.footerSocial{
+    display: flex;
+    flex-direction: row;
+}
+
+.footerSocialLink{
+    font-size: 30px;
+    padding: 10px 10px 0 5px;
+    color: var(--main-color);
+}
+
+.footerSocialLink:hover{
+    color: #000;
+}
+
+.footerLink a:hover {
+    opacity: 1;
+}
+
+.footerPowered {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 600;
+}
+
+.footerPowered p {
+    margin-right: 15px;
+}
+
+.footerCopyright {
+    width: 70%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+
+.footerCopyrightP {
+    opacity: 0.7;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px) */
+@media only screen and (max-width: 1200px) {
+    .footerMain {
+        width: 90%;
+    }
+
+    .footerCopyright {
+        width: 90%;
+    }
+
+    .footerDevider {
+        width: 100%;
+    }
+    .footerLogo {
+        width: 80%;
+        margin: auto;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px) */
+@media only screen and (max-width: 992px) {
+    .footerMain {
+        flex-wrap: wrap;
+    }
+
+    .footerCol {
+        width: 33%;
+    }
+
+    .footerCol:has(.footerLogo) {
+        width: 100%;
+    }
+
+    .footerLogo {
+        max-width: 200px;
+        margin-bottom: 30px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768pxp) */
+@media only screen and (max-width: 768px) {
+
+    /*.footerMain{
+        flex-direction: column;
+    }*/
+    .footerCol {
+        width: 50%;
+    }
+
+    .footerCopyright {
+        flex-direction: column-reverse;
+        height: fit-content;
+        font-size: 14px;
+    }
+
+    .footerPowered {
+        margin-bottom: 20px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px) */
+@media only screen and (max-width: 600px) {
+    .footerCol {
+        width: 100%;
+    }
+
+    .footerCopyright {
+        align-items: flex-start;
+        font-size: 12px;
+    }
+
+    .footerCopyrightP {
+        margin-bottom: 10px;
+    }
+
+    .footerPowered {
+        display: block;
+    }
+
+    .footerCopyrightP {
+        margin-bottom: 5px;
+    }
+}
