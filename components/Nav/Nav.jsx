@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Nav.module.css"
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaHome, FaUserFriends, FaClipboardList, FaInfoCircle } from "react-icons/fa";
 import { usePathname} from 'next/navigation'
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
@@ -22,15 +22,16 @@ const Nav = ({setMenuVisible}) => {
         setScrolled(window.scrollY > SCROLL_TRIGGER_PX);
     }
     
-    if(window.location.pathname != "/"){
-      setScrolled(true);
-    }else{
-      setScrolled(false);
-      window.addEventListener("scroll", check)
-      return () => {
-        window.removeEventListener("scroll", check);
-      }
-    }
+    // Vratiti na false ukoliko zelis da se nesto promeni kada skrolujes
+    // if(window.location.pathname != "/"){
+    //   setScrolled(true);
+    // }else{
+    //   setScrolled(false); 
+    //   window.addEventListener("scroll", check)
+    //   return () => {
+    //     window.removeEventListener("scroll", check);
+    //   }
+    // }
 },[pathname])
 
   useEffect(() => {
@@ -42,26 +43,30 @@ const Nav = ({setMenuVisible}) => {
   }, []);
 
   return (
-    <div className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
+    <div className={`${styles.navbar} ${styles.scrolled}`}>
       <div className={styles.logo}>
               <Link href="/">
-                <img src={scrolled ? "/images/logoBlack.png" : "/images/logoBlack"} alt="Logo" />
+                <img src="/images/logoBlack.png" alt="Logo" />
               </Link>
       </div>
       <nav className={styles.nav}>
         <ul>
           <li>
-              <Link className={styles.navLink} href="/about">O Nama</Link>
+              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/"><FaHome /></Link>
           </li>
           <li>
-              <Link className={styles.navLink} href="/arena">Arena</Link>
+              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/arena"><FaUserFriends /></Link>
           </li>
           <li>
-              <Link className={styles.navLink} href="/ranglist">Rang Lista</Link>
+              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/ranglist"><FaClipboardList /></Link>
           </li>
           <li>
-              <Link className={styles.navLink} href="/activities">Moje aktivnosti</Link>
+              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/info"><FaInfoCircle /></Link>
           </li>
+        </ul> 
+      </nav>
+      <nav className={styles.nav}>
+        <ul>
           <li>
           {session?.user ? (
             <div className={styles.navProfile}>

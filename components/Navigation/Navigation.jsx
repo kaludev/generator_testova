@@ -11,7 +11,7 @@ const Navigation = () => {
     useEffect(() => {setMenuVisible(false)},[params]);
   return (
     <div>
-        <Nav setMenuVisible={setMenuVisible} />
+        <Nav setMenuVisible={setMenuVisible}/>
         <SideNav menuVisible={menuVisible} setMenuVisible={setMenuVisible} />
     </div>
     

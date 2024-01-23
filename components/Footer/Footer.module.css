@@ -1,7 +1,12 @@
 .footer{
     width: 100%;
-    margin: auto;
-    background-color: #fff;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 90px auto 0 auto;
+    background-color: transparent;
 }
 
 .footerMain {
@@ -33,7 +38,7 @@
 }
 
 .footerLogo {
-    width: 80%;
+    width: 50%;
 }
 
 .footerLink {

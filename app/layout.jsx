@@ -6,8 +6,8 @@ import ToastProvider from '@components/ToastProvider';
 import Navigation from '@components/Navigation/Navigation';
 
 export const metadata = {
-    title: 'Hakaton Arena',
-    description: 'Rezerviši svoju arenu odmah!'
+    title: 'Generator Testova',
+    description: 'Upiši svoje pitanje odmah!'
 };
 const RootLayout = ({ children }) => {
   return (
@@ -18,7 +18,6 @@ const RootLayout = ({ children }) => {
                         <main className='app'>
                             <Navigation />
                             {children}
-                            <Footer />
                         </main>
                     </ToastProvider>
                 </Provider>
