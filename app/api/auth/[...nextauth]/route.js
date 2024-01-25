@@ -1,11 +1,11 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import User from "@models/user";
-import Event from "@models/event";
+//import User from "@models/user";
+//import Event from "@models/event";
 
 import { connectToDB } from "@utils/database";
-import Organizer from "@models/organizer";
-import OrganizerRequest from "@models/OrganizerRequest";
+//import Organizer from "@models/organizer";
+//import OrganizerRequest from "@models/OrganizerRequest";
 
 const authOptions = {
   providers: [

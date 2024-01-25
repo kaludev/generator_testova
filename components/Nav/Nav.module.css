@@ -1,0 +1,151 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 85px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px;
+    font-weight: 500;
+    z-index: 99;
+    transition: all linear 0.2s;
+}
+
+.navbar.scrolled {
+    background-color: #fff;
+    padding: 8px 60px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo a img {
+    width: 50px;
+    padding: 10px 0 10px 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+.nav ul li {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.navLink {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    margin: 5px;
+    opacity: 0.8;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.navLink:hover {
+    opacity: 1;
+}
+
+.navIcon{
+    font-size: 22px;
+    padding: 0 15px;
+}
+
+.navProfile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profilePic {
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.navProfileImageBack {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primaryButton,
+.secondaryButton {
+    padding: 7px 20px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.primaryButton {
+    background-color: var(--main-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 7px 25px;
+    color: #fff;
+}
+
+.primaryButton:hover {
+    color: var(--main-color);
+    box-shadow: rgba(0, 0, 0, 0) 0px 5px 15px;
+}
+
+.navbar.scrolled .navLink {
+    color: var(--main-color);
+}
+
+.menuBtn {
+    display: none;
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 22px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menuBtn.scrolled {
+    color: #000;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1220px) {
+    .nav {
+        display: none;
+    }
+
+    .menuBtn {
+        display: flex;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 500px) {
+}
