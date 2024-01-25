@@ -1,0 +1,197 @@
+.cardsMainSection {
+    width: 100%;
+    height: fit-content;
+}
+
+.cardsSection {
+    width: 100%;
+    max-width: 1200px;
+    margin: 100px auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cardEvent {
+    width: 100%;
+    position: relative;
+    height: fit-content;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 20px auto 20px auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #fff;
+}
+
+.eventMain {
+    width: 90%;
+    height: fit-content;
+    margin: 20px auto 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.eventHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.eventHeaderSec {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.eventHeaderLeft {
+    width: 50%;
+}
+
+.eventHeaderRight {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.eventHeaderRight:hover {
+    color: var(--main-color);
+}
+
+.eventName {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 10px 0 30px 0;
+}
+
+.eventOrgName {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 20px 0 5px 0;
+}
+
+.eventDesc {
+    width: 100%;
+    font-size: 16px;
+    color: #000000c4;
+    line-height: 19px;
+    padding-bottom: 5px;
+}
+
+.eventData {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+}
+
+.eventPlaceData {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    color: #000000c4;
+    font-size: 16px;
+}
+
+.eventColored {
+    width: 30%;
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.eventTime {
+    padding: 5px 0;
+}
+
+.eventParticipants {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.eventButtons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.primaryButton {
+    padding: 5px 15px;
+    margin: 10px 20px 10px 5px;
+}
+
+.primaryButton:hover {
+    color: var(--main-color);
+}
+
+.secondaryButton {
+    height: 20px;
+    padding: 0 5px;
+    margin: 0;
+}
+
+.secondaryButton:hover {
+    background-color: transparent;
+    color: var(--main-color);
+    border: none;
+}
+
+.eventLikes {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.secondaryButton {
+    color: var(--main-color);
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.eventLikesNum {
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 800px) {
+    .cardsSection {
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .eventHeader{
+        flex-direction: column;
+    }
+    .eventHeaderRight{
+        display: none;
+    }
+    .eventHeaderLeft{
+        width: 100%;
+    }
+}
