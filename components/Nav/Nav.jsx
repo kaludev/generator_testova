@@ -13,7 +13,6 @@ const Nav = ({setMenuVisible}) => {
   const pathname = usePathname()
   const {data: session} = useSession();
   const [ providers, setProviders ] = useState(null);
-  const [toggleDropdown, setToggleDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const SCROLL_TRIGGER_PX = 0;
 

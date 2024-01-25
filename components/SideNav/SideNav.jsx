@@ -67,6 +67,8 @@ const SideNav = ({menuVisible,setMenuVisible}) => {
     if(windowSize.width > 1024) setMenuVisible(false)
 }, [windowSize.width])
 
+  
+
   return (
     <>
       
