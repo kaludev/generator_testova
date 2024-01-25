@@ -1,0 +1,100 @@
+.header {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5046393557422969) 100%), url(../../public/images/hero.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.h1 {
+    width: 60%;
+    color: #fff;
+    font-size: calc(1.375rem + 1.5vw);
+    font-weight: 600;
+}
+
+.heroBtns {
+    margin-top: 20px;
+}
+
+.heroBtn {
+    padding: 12px 40px 12px 40px;
+    margin: 20px 20px 20px 10px;
+    opacity: 1;
+}
+
+.navP {
+    width: 60%;
+    margin: 10px 0 20px 0;
+    color: #fff;
+}
+
+.inputCode{
+    width: 300px;
+    padding: 12px 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 2px solid transparent;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+.primaryButton {
+    padding: 10px 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.secondaryButton {
+    padding: 10px 15px;
+    margin-right: 15px;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px) */
+@media only screen and (max-width: 1200px) {
+    .hero {
+        width: 80%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px) */
+@media only screen and (max-width: 992px) {
+    .h1 {
+        width: 90%;
+    }
+
+    .navP {
+        width: 90%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768pxp) */
+@media only screen and (max-width: 768px) {}
+
+/* Small devices (portrait tablets and large phones, 600px) */
+@media only screen and (max-width: 600px) {
+    .hero {
+        width: 85%;
+    }
+    
+    .inputCode{
+        width: 200px;
+    }
+}

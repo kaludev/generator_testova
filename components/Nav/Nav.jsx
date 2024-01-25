@@ -22,7 +22,7 @@ const Nav = ({setMenuVisible}) => {
         setScrolled(window.scrollY > SCROLL_TRIGGER_PX);
     }
     
-    // Vratiti na false ukoliko zelis da se nesto promeni kada skrolujes
+    // Vratiti ukoliko zelis da se nesto promeni kada skrolujes
     // if(window.location.pathname != "/"){
     //   setScrolled(true);
     // }else{
@@ -46,7 +46,7 @@ const Nav = ({setMenuVisible}) => {
     <div className={`${styles.navbar} ${styles.scrolled}`}>
       <div className={styles.logo}>
               <Link href="/">
-                <img src="/images/logoBlack.png" alt="Logo" />
+                {/* <img src="/images/logoBlack.png" alt="Logo" /> Vratiti Logo ovde*/}
               </Link>
       </div>
       <nav className={styles.nav}>
