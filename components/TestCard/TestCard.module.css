@@ -65,7 +65,6 @@
     font-size: 34px;
     font-weight: 600;
     color: var(--main-color);
-    cursor: pointer;
 }
 
 .eventHeaderRight:hover {
