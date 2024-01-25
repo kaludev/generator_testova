@@ -1,0 +1,127 @@
+.profileCard{
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 120px auto 20px auto;
+}
+.profileCardMain{
+    width: 90%;
+    flex-direction: column;
+    margin: auto 10px;
+}
+.profileCardMain h2{
+    font-size: 30px;
+    font-weight: 600;
+}
+.divider{
+    width: 100%;
+    margin: 10px 0;
+    border: none;
+    height: 1px;
+    background-color: var(--main-color);
+}
+.profileHeader{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.userPhoto{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 15px;
+}
+.userInfo{
+    width: calc(100% - 110px);
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+.userFirstName{
+    font-size: 22px;
+    font-weight: bold;
+}
+.username{
+    font-size: 14px;
+    color: #000000c4;
+}
+.userSettings{
+    width: 50px;
+    display: flex;
+    font-size: 22px;
+    color: #000000c4;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.profileDesc{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+.descRow{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.descRowMain{
+    width: calc(100% - 150px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    margin: 10px 0;
+}
+.descTitle{
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+.descP{
+    font-size: 14px;
+    color: #000000c4;
+}
+.descRowButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.primaryButton, .secondaryButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 45px;
+    margin: auto;
+    padding: 0px 15px;
+    cursor: pointer;
+}
+.warningButton{
+    border-color: red;
+    color: red;
+}
+.warningButton:hover{
+    background-color: red;
+}
+
+/* Medium devices (landscape tablets, 600 and up) */
+@media only screen and (max-width: 600px) {
+    .descRow{
+        flex-direction: column;
+    }
+    .descRowMain{
+        width: 100%;
+    }
+    .userInfo{
+        margin: 0;
+    }
+    .primaryButton, .secondaryButton{
+        margin: 0 0 0 10px;
+    }
+}

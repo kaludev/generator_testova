@@ -54,9 +54,9 @@ const Nav = ({setMenuVisible}) => {
           <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/"><FaHome /></Link>
           </li>
-          <li>
+          {/* <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/arena"><FaUserFriends /></Link>
-          </li>
+          </li> */}
           <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/tests"><FaClipboardList /></Link>
           </li>
