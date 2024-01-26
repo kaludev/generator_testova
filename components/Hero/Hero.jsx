@@ -1,7 +1,7 @@
+import HeroForm from "@components/HeroForm/HeroForm"
 import styles from "./Hero.module.css"
 
 export default function HeroSection() {
-
     return (
         <header className={styles.header}>
             <section className={styles.hero}>
