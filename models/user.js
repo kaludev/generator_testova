@@ -26,7 +26,7 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    class:{
+    className:{
         type: String,
         default: ""
     }
