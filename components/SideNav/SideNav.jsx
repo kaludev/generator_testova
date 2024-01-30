@@ -80,16 +80,16 @@ const SideNav = ({menuVisible,setMenuVisible}) => {
             <div className={styles.sideNav}>
               <ul>
                 <li>
-                    <Link className={styles.sideNavLink} href="/about">O Nama</Link>
+                    <Link className={styles.sideNavLink} href="/">Početna</Link>
                 </li>
                 <li>
-                    <Link className={styles.sideNavLink} href="/arena">Arena</Link>
+                    <Link className={styles.sideNavLink} href="/tests">Testovi</Link>
                 </li>
                 <li>
-                    <Link className={styles.sideNavLink} href="/ranglist">Rang Lista</Link>
+                    <Link className={styles.sideNavLink} href="/tests">Odeljenja</Link>
                 </li>
                 <li>
-                    <Link className={styles.sideNavLink} href="/activities">Moje aktivnosti</Link>
+                    <Link className={styles.sideNavLink} href="/info">Informacije</Link>
                 </li>
               </ul>
             </div>
