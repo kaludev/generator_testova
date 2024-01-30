@@ -1,6 +1,6 @@
 import { Schema,model ,models } from "mongoose";
 
-const classNameSchema = new Schema({
+const classCodeSchema = new Schema({
     code:{
         type: String,
         unique: true,
@@ -13,6 +13,6 @@ const classNameSchema = new Schema({
     }
 });
 
-const className = models.className || model('className', classNameSchema);
+const classCode = models.classCode || model('classCode', classCodeSchema);
 
-export default className;
+export default classCode;

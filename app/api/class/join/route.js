@@ -1,13 +1,37 @@
-import className from "@models/classCodes";
+import { authOptions } from "@app/api/auth/[...nextauth]/route";
+import classCode from "@models/classCodes";
 import User from "@models/user";
 import { getServerSession } from "next-auth";
-
+import statusCodes from 'http-status-codes'
 
 export const POST = async (request) =>{
-    const session = await getServerSession()
-    const user = await User.findOne({email: session.user.email});
+    const session = await getServerSession(authOptions)
+    if(!session.user){
+        return new Response(JSON.stringify({
+            ok: false,
+            message: "Morate biti ulogovani"
+        }),{status: statusCodes.UNAUTHORIZED})
+    }
+    if(session.user.isVerified){
+        return new Response(JSON.stringify({
+            ok:false,
+            message:"Već ste deo odeljenja"
+        }),{status: statusCodes.BAD_REQUEST});
+    }
+    const className = await classCode.findOne({code: request.json().code});
+    if(!className){
+        
+        return new Response(JSON.stringify({
+            ok:false,
+            message:"Kod nije važeći"
+        }),{status: statusCodes.BAD_REQUEST})
+    }
+    const user = await User.updateOne({email: session.user.email},{
+        verified:true,
+        class:className.name
+    });
     return new Response(JSON.stringify({
         ok:true,
-        className: className
-    }))
+        className: className.name
+    }),{status: statusCodes.OK});
 }
