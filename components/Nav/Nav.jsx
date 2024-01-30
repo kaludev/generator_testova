@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Nav.module.css"
-import { FaBars, FaHome, FaUserFriends, FaClipboardList, FaInfoCircle } from "react-icons/fa";
+import { FaBars, FaHome, FaUserFriends, FaClipboardList, FaInfoCircle, FaUsers } from "react-icons/fa";
 import { usePathname} from 'next/navigation'
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
@@ -53,11 +53,11 @@ const Nav = ({setMenuVisible}) => {
           <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/"><FaHome /></Link>
           </li>
-          {/* <li>
-              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/arena"><FaUserFriends /></Link>
-          </li> */}
           <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/tests"><FaClipboardList /></Link>
+          </li>
+          <li>
+              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/classes"><FaUsers /></Link>
           </li>
           <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/info"><FaInfoCircle /></Link>
