@@ -85,9 +85,9 @@ const SideNav = ({menuVisible,setMenuVisible}) => {
                 <li>
                     <Link className={styles.sideNavLink} href="/tests">Testovi</Link>
                 </li>
-                <li>
+                {session?.user.isSuperAdmin && <li>
                     <Link className={styles.sideNavLink} href="/tests">Odeljenja</Link>
-                </li>
+                </li>}
                 <li>
                     <Link className={styles.sideNavLink} href="/info">Informacije</Link>
                 </li>
@@ -97,11 +97,6 @@ const SideNav = ({menuVisible,setMenuVisible}) => {
         <div className={styles.sidebarUserLinks}>
         {session?.user ? (
           <div className={styles.sideNavProfile}>
-            {session?.user.isOrganizer && 
-            <Link href="/create-event" className={`${styles.primaryButton} primaryButton`}>
-              {" "}
-              Dodaj Takmičenje
-            </Link>}
             <Link href="/profile" className={`${styles.primaryButton} primaryButton`}>
               <div className={styles.navProfileImageBack}>
                   Moj Nalog

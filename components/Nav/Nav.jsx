@@ -56,9 +56,10 @@ const Nav = ({setMenuVisible}) => {
           <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/tests"><FaClipboardList /></Link>
           </li>
-          <li>
+          
+          {session?.user.isSuperAdmin && <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/classes"><FaUsers /></Link>
-          </li>
+          </li>}
           <li>
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/info"><FaInfoCircle /></Link>
           </li>
@@ -69,10 +70,6 @@ const Nav = ({setMenuVisible}) => {
           <li>
           {session?.user ? (
             <div className={styles.navProfile}>
-              {session?.user.isOrganizer && <Link href="/create-event" className={`${styles.secondaryButton} secondaryButton`}>
-                {" "}
-                Dodaj takmičenje
-              </Link>}
               <button type="button" onClick={async () =>{await signOut(); window.location.href ='/'}} className={`${styles.secondaryButton} secondaryButton`}>
                 {" "}
                 Odjavi se

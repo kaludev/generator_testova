@@ -3,6 +3,8 @@
 import { getProviders, signIn, useSession } from "next-auth/react"
 import { useEffect, useState } from "react";
 import styles from "./HeroForm.module.css"
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from 'react-toastify';
 import  Link from "next/link"
 
 const HeroForm = () => {
@@ -23,6 +25,7 @@ const HeroForm = () => {
       console.log(code)
     }
     const handleSubmit = async (e) => {
+      e.preventDefault();
       const res = await fetch('/api/class/join',{
         method: 'POST',
         headers: {
@@ -32,14 +35,28 @@ const HeroForm = () => {
           code: code,
         })
       })
+      const data = await res.json();
+
+      if(!data.ok){
+        toast.error("Greška: " + data.message);
+      }else{
+        toast.success("Uspešno ste dodani u odeljenje: " + data.className);
+      }
+
     }
     return (
         session?.user ? <form action="">
         
-        {session?.user.isVerified ?
+        {session?.user.isSuperAdmin ?
         <div>
-          <p style={styles.navP}>Vi ste deo odeljenja {session?.user.class}</p> 
-          <Link href="/tests"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj testove</button></Link>
+          <Link href="/tests"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj predmete</button></Link>
+          <Link href="/classes"><button className={`${styles.primaryButton} secondaryButton`}>Pregledaj učionice</button></Link>
+        </div> 
+        :
+        session?.user.isVerified ? 
+        <div>
+          <p className={styles.navP}>Vi ste deo odeljenja {session?.user.class}</p> 
+          <Link href="/tests"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj predmete</button></Link>
         </div>
         :
         <div>
