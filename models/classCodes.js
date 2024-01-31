@@ -10,6 +10,10 @@ const classCodeSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    numOfAttenders:{
+        type: Number,
+        default: 0
     }
 });
 
