@@ -37,13 +37,14 @@ export default function ClassSection(){
             toast.error("Greška: " + data.message);
         }else{
             toast.success("Kreirano odeljenje: " + data.data.name);
+            const copy = [...classes];
+
+            copy.push(data.data);
+
+            setClasses(copy);
         }
-
-        const copy = [...classes];
-
-        copy.push(data.data);
-
-        setClasses(copy);
+        
+        setOverlay(false);
     }
 
     const handleChange = (e) => {
@@ -54,9 +55,9 @@ export default function ClassSection(){
         <div className={styles.cardsMainSection}>
             {overlay && <div className={styles.overlay}> 
                     <input type="text" className={styles.inputCode} value={className} onChange={handleChange}/> 
-                    <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Pronađi učionicu</button>
+                    <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Odeljenje</button>
             </div>}
-            <button className={ styles.primaryButton + ' primaryButton '} onClick={() => setOverlay(value => !value)}>Kreiraj ucionicu</button>
+            {!overlay && <button className={ styles.primaryButton + ' primaryButton '} onClick={() => setOverlay(value => !value)}>Kreiraj odeljenje</button>}
             <div className={styles.cardsSection}>
                 {classes.length>0 ? classes.map( className =><ClassCard classCode={className}/>) : <div className="">loading...</div>}
             </div>
