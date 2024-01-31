@@ -25,7 +25,7 @@ const authOptions = {
       session.user.name = sessionUser.name;
       session.user.isSuperAdmin = sessionUser.isSuperAdmin;
       session.user.isVerified = sessionUser.verified
-      session.user.class = sessionUser.class
+      session.user.class = sessionUser.className;
 
       return session;
     },
