@@ -18,7 +18,7 @@ export const POST = async (request) =>{
             message:"Već ste deo odeljenja"
         }),{status: statusCodes.BAD_REQUEST});
     }
-    const className = await classCode.findOne({code: request.json().code});
+    const className = await classCode.findOneAndUpdate({code: request.json().code},{ $inc: {numOfAttenders:1}});
     if(!className){
         
         return new Response(JSON.stringify({
