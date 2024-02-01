@@ -1,5 +1,6 @@
 import { authOptions } from '@app/api/auth/[...nextauth]/route';
 import classCode from '@models/classCodes';
+import Subject from '@models/subject';
 import statusCodes from 'http-status-codes'
 import { getServerSession } from 'next-auth'
 
@@ -17,9 +18,9 @@ export const GET = async (request) =>{
             message:"Morate biti Miloye"
         }),{status: statusCodes.UNAUTHORIZED});
     }
-    const classNames = await classCode.find({});
+    const subjects = await Subject.find({});
     return new Response(JSON.stringify({
         ok: true,
-        data: classNames
+        data: subjects
     }),{status: statusCodes.OK})
 }
