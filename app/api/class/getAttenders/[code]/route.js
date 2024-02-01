@@ -26,12 +26,12 @@ export const GET = async (request,{params}) =>{
             message:"Kod je pogrešan"
         }),{status: statusCodes.BAD_REQUEST});
     }
-    const attenders = await User.find({className: className.name},{_id:0, email:1,username:1,name:1,image:1});
-    className.attendees = attenders;
-    console.log(className);
-    console.log(attenders);
+    const attendees = await User.find({className: className.name},{_id:0, email:1,username:1,name:1,image:1});
+    className.attendees = attendees;
+    const data = {...className._doc, attendees: attendees}
+    console.log(data);
     return new Response(JSON.stringify({
         ok: true,
-        data: className
+        data: data
     }),{status: statusCodes.OK})
 }
