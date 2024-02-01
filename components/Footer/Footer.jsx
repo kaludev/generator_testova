@@ -21,7 +21,8 @@ export default function Footer({dark}) {
                 <div className={styles.footerCol}>
                     <h3>Vaši podaci</h3>
                     <div className={styles.footerLink}><Link href="/termsofuse">Uslovi korišćenja</Link></div>
-                    <div className={styles.footerLink}><a href="/privacypolicy">Politika privatnosti</a></div>
+                    <div className={styles.footerLink}><Link href="/privacypolicy">Politika privatnosti</Link></div>
+                    <div className={styles.footerLink}><Link href="/usermanual">Uputstvo</Link></div>
                 </div>
                 <div className={styles.footerCol}>
                     <h3>Kontakt</h3>

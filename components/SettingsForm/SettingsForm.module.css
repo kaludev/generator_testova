@@ -124,7 +124,7 @@
 .inputBox.active .inputLabel {
     color: var(--main-color);
     top: -9px;
-    background: #caf0f8;
+    background: var(--body-background);
     font-size: 11px;
     transition: 250ms;
 }

@@ -50,7 +50,7 @@ const HeroForm = () => {
         {session?.user.isSuperAdmin ?
         <div>
           <Link href="/tests"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj predmete</button></Link>
-          <Link href="/classes"><button className={`${styles.primaryButton} secondaryButton`}>Pregledaj učionice</button></Link>
+          <Link href="/classes"><button className={`${styles.secondaryButton} secondaryButton`}>Pregledaj učionice</button></Link>
         </div> 
         :
         session?.user.isVerified ? 
@@ -60,7 +60,7 @@ const HeroForm = () => {
         </div>
         :
         <div>
-          <input type="text" className={styles.inputCode} value={code} onChange={handleChange}/> 
+          <input type="text" className={styles.inputCode} value={code} placeholder="Unesite kod" onChange={handleChange}/> 
           <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Pronađi učionicu</button>
         </div> }
         

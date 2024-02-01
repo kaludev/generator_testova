@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5046393557422969) 100%), url(../../public/images/hero.jpg);
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5046393557422969) 100%), url(../../public/images/hero4.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -60,6 +60,7 @@
 .secondaryButton {
     padding: 10px 15px;
     margin-right: 15px;
+    color: #fff;
 }
 
 /* Extra large devices (large laptops and desktops, 1200px) */

@@ -1,11 +1,12 @@
-.primaryButton, .secondaryButton{
+.primaryButton,
+.secondaryButton {
     width: 250px;
     padding: 10px 45px;
     margin: 10px 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.primaryButton:hover{
+.primaryButton:hover {
     color: var(--main-color);
 }
 
@@ -24,19 +25,7 @@
     flex-wrap: wrap;
 }
 
-.loading{
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: var(--body-background);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.createEvent{
+.createEvent {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,13 +37,13 @@
     cursor: pointer;
 }
 
-.createEvent:hover{
+.createEvent:hover {
     background-color: transparent;
     border: 2px solid var(--main-color);
     color: var(--main-color);
 }
 
-.overlay{
+.overlay {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -68,7 +57,7 @@
     z-index: 2;
 }
 
-.inputCode{
+.inputCode {
     width: 250px;
     padding: 10px 15px;
     margin-bottom: 40px;
@@ -78,7 +67,8 @@
     outline: none;
 }
 
-.inputCode:active, .inputCode:focus{
+.inputCode:active,
+.inputCode:focus {
     border: 3px solid var(--main-color);
 }
 
