@@ -45,7 +45,7 @@ const Nav = ({setMenuVisible}) => {
     <div className={`${styles.navbar} ${styles.scrolled}`}>
       <div className={styles.logo}>
               <Link href="/">
-                {/* <img src="/images/logoBlack.png" alt="Logo" /> Vratiti Logo ovde*/}
+                <img src="/images/logoBlack.png" alt="Logo" />
               </Link>
       </div>
       <nav className={styles.nav}>

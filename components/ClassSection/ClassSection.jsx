@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import styles from "./ClassSection.module.css"
+import cardStyles from "../ClassCard/ClassCard.module.css"
 import "react-toastify/dist/ReactToastify.css";
 import {toast} from 'react-toastify';
 import ClassCard from "@components/ClassCard/ClassCard";
+import { FaPlus } from "react-icons/fa";
 
 export default function ClassSection(){
     const [classes, setClasses] = useState([]);
@@ -54,12 +56,13 @@ export default function ClassSection(){
     return(
         <div className={styles.cardsMainSection}>
             {overlay && <div className={styles.overlay}> 
-                    <input type="text" className={styles.inputCode} value={className} onChange={handleChange}/> 
+                    <input type="text" className={styles.inputCode} autoFocus value={className} onChange={handleChange}/> 
                     <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Odeljenje</button>
+                    <button className={`${styles.secondaryButton} secondaryButton`} >Odustani</button>
             </div>}
-            {!overlay && <button className={ styles.primaryButton + ' primaryButton '} onClick={() => setOverlay(value => !value)}>Kreiraj odeljenje</button>}
             <div className={styles.cardsSection}>
-                {classes.length>0 ? classes.map( className =><ClassCard classCode={className}/>) : <div className="">loading...</div>}
+                {!overlay && <button className={`${cardStyles.cardEvent} ${styles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
+                {classes.length>0 ? classes.map( className =><ClassCard classCode={className}/>) : <div className={styles.loading}>loading...</div>}
             </div>
         </div>
         

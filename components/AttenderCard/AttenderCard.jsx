@@ -12,10 +12,11 @@ export default function AttenderCard({attender}){
             <a href={"mailto:" + attender.email}>
                 <div className={styles.eventMain}>
                     <div className={styles.eventName}>{attender.name}</div>
-                    <div className={styles.eventName}>{attender.username}</div>
-                    <Image src={attender.image} className="rounded-full" width={50} height={50}/>
-                    
+                    <div className={styles.eventUsername}>@{attender.username}</div>
                 </div>
+            </a>
+            <a href={"mailto:" + attender.email}>
+                <Image src={attender.image} className={styles.profileImage} width={50} height={50}/>
             </a>
         </div>
         

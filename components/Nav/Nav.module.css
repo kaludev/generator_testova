@@ -26,6 +26,12 @@
     align-items: center;
 }
 
+.logo a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .logo a img {
     width: 50px;
     padding: 10px 0 10px 0;
@@ -67,7 +73,7 @@
     opacity: 1;
 }
 
-.navIcon{
+.navIcon {
     font-size: 22px;
     padding: 0 15px;
 }
@@ -147,5 +153,4 @@
 @media only screen and (max-width: 768px) {}
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 500px) {
-}
+@media only screen and (max-width: 500px) {}

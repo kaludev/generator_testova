@@ -1,8 +1,12 @@
-.primaryButton {
+.primaryButton, .secondaryButton{
+    width: 250px;
     padding: 10px 45px;
-    margin-right: 15px;
-    margin-bottom: 15px;
+    margin: 10px 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.primaryButton:hover{
+    color: var(--main-color);
 }
 
 .cardsMainSection {
@@ -18,6 +22,64 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--body-background);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.createEvent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: var(--body-background);
+    background-color: var(--main-color);
+    outline: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.createEvent:hover{
+    background-color: transparent;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.overlay{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--body-background);
+    z-index: 2;
+}
+
+.inputCode{
+    width: 250px;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 3px solid transparent;
+    font-size: 16px;
+    outline: none;
+}
+
+.inputCode:active, .inputCode:focus{
+    border: 3px solid var(--main-color);
 }
 
 @media only screen and (max-width: 800px) {

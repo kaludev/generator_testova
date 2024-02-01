@@ -11,9 +11,8 @@ export default function ClassCard({classCode}){
             <Link href={"/classes/" + classCode.code}>
                 <div className={styles.eventMain}>
                     <div className={styles.eventName}>{classCode.name}</div>
-                    <div className={styles.eventName}>{classCode.code}</div>
-                    <div className={styles.eventName}>{classCode?.numOfAttenders}</div>
-                    
+                    <div className={styles.eventDesc}>{classCode.code}</div>
+                    <div className={styles.eventNumber}>Broj učenika: {classCode?.numOfAttenders}</div>
                 </div>
             </Link>
         </div>

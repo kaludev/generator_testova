@@ -1,10 +1,11 @@
 .cardEvent {
     width: 100%;
-    max-width: 300px;
+    max-width: 200px;
     position: relative;
-    height: 200px;
+    height: 120px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border-radius: 5px;
     margin: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -16,10 +17,22 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
+    padding: 15px 10px 10px 15px;
 }
 
 .eventName {
     width: 100%;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
+}
+
+.eventDesc{
+    width: 100%;
+    font-size: 12px;
+    padding-top: 10px;
+}
+
+.eventNumber{
+    width: 100%;
+    font-size: 14px;
 }

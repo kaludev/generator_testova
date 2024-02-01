@@ -1,18 +1,21 @@
 .cardEvent {
     width: 100%;
-    max-width: 300px;
     position: relative;
-    height: 200px;
+    min-height: 70px;
+    height: fit-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 5px;
-    margin: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: #fff;
+    margin: 0px 20px;
+    padding: 0 20px;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #fff; */
 }
 
 .eventMain {
-    width: 90%;
+    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -20,6 +23,17 @@
 
 .eventName {
     width: 100%;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
+}
+
+.eventUsername{
+    width: 100%;
+    font-size: 14px;
+}
+
+.profileImage{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
