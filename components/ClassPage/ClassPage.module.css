@@ -1,0 +1,53 @@
+.cardEvent {
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    margin: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #fff;
+}
+
+.eventMain {
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.eventName {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.primaryButton {
+    padding: 10px 45px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.cardsMainSection {
+    width: 100%;
+    height: fit-content;
+    margin-top: 100px;
+}
+
+.cardsSection {
+    width: 100%;
+    max-width: 1200px;
+    margin: 100px auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 800px) {
+    .cardsSection {
+        justify-content: center;
+    }
+}

@@ -6,13 +6,13 @@ import statusCodes from 'http-status-codes'
 
 export const POST = async (request) =>{
     const session = await getServerSession(authOptions)
-    if(!session.user){
+    if(!session?.user){
         return new Response(JSON.stringify({
             ok: false,
             message: "Morate biti ulogovani"
         }),{status: statusCodes.UNAUTHORIZED})
     }
-    if(session.user.isVerified){
+    if(session?.user.isVerified){
         return new Response(JSON.stringify({
             ok:false,
             message:"Već ste deo odeljenja"
@@ -29,7 +29,7 @@ export const POST = async (request) =>{
     }
     const user = await User.updateOne({email: session.user.email},{
         verified:true,
-        class:className.name
+        className:className.name
     });
     return new Response(JSON.stringify({
         ok:true,
