@@ -59,11 +59,11 @@ export default function ClassSection(){
             {overlay && <div className={styles.overlay}> 
                     <input type="text" className={styles.inputCode} value={className} placeholder="Unesite naziv odeljenja" onChange={handleChange} autoFocus/> 
                     <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Odeljenje</button>
-                    <button className={`${styles.secondaryButton} secondaryButton`} >Odustani</button>
+                    <button className={`${styles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
             </div>}
             <div className={styles.cardsSection}>
                 {!overlay && <button className={`${cardStyles.cardEvent} ${styles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
-                {classes.length>0 ? classes.map( className =><ClassCard classCode={className}/>) : <div className="loading">Učitavanje</div>}
+                {classes.length>0 ? classes.map( className =><ClassCard classCode={className}/>) : <div className="loading"></div>}
             </div>
         </div>
         
