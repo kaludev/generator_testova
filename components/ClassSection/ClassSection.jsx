@@ -55,6 +55,7 @@ export default function ClassSection(){
     }
     return(
         <div className={styles.cardsMainSection}>
+            
             {overlay && <div className={styles.overlay}> 
                     <input type="text" className={styles.inputCode} value={className} placeholder="Unesite naziv odeljenja" onChange={handleChange} autoFocus/> 
                     <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Odeljenje</button>

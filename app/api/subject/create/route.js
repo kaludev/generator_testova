@@ -1,8 +1,8 @@
 import { authOptions } from "@app/api/auth/[...nextauth]/route";
-import classCode from "@models/classCodes";
 import { getServerSession } from "next-auth";
 import statusCodes from 'http-status-codes'
 import { uid } from "uid";
+import Subject from "@models/subject";
 
 export const POST = async (request) =>{
     try{
@@ -26,7 +26,7 @@ export const POST = async (request) =>{
             name: data.name,
             classes:classes
         }
-        await classCode.create(className);
+        await Subject.create(className);
         return new Response(JSON.stringify({
             ok:true,
             data: className
