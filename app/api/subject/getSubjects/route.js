@@ -18,7 +18,7 @@ export const GET = async (request) =>{
             message:"Morate biti Miloye"
         }),{status: statusCodes.UNAUTHORIZED});
     }
-    const subjects = await Subject.find({});
+    const subjects = await Subject.find({}).populate("classes");
     return new Response(JSON.stringify({
         ok: true,
         data: subjects
