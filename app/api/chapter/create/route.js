@@ -1,8 +1,7 @@
 import { authOptions } from "@app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import statusCodes from 'http-status-codes'
-import { uid } from "uid";
-import Subject from "@models/subject";
+import Chapter from "@models/chapter";
 
 export const POST = async (request) =>{
     try{
@@ -21,13 +20,12 @@ export const POST = async (request) =>{
         }
 
         const data = await request.json();
-        const classes = data.classes;
         const className= {
             name: data.name,
-            class: data.class,
-            
+            classId: data.classId,
+            subjectId: data.subjectId
         }
-        await Subject.create(className);
+        await Chapter.create(className);
         return new Response(JSON.stringify({
             ok:true,
             data: className

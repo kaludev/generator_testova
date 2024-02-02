@@ -63,7 +63,7 @@ export default function ClassSection(){
             </div>}
             <div className={styles.cardsSection}>
                 {!overlay && <button className={`${cardStyles.cardEvent} ${styles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
-                {classes.length>0 ? classes.map( className =><ClassCard classCode={className}/>) : <div className="loading"></div>}
+                {classes.length>0 ? classes.map( className =><ClassCard classCode={className}/>) : <div className="loading">Učitavanje...</div>}
             </div>
         </div>
         

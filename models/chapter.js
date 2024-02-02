@@ -5,11 +5,11 @@ const chapterSchema = new Schema({
         type: String,
         required: true
     },
-    subject:{
+    subjectId:{
         type: Schema.Types.ObjectId,
         ref: "Subject"
     },
-    class:{
+    classId:{
         type: Schema.Types.ObjectId,
         ref: "classCode"
     },

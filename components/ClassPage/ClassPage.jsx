@@ -12,7 +12,7 @@ const ClassPage = ({data}) => {
           <div className={styles.attendees}>Broj učenika: {data?.numOfAttenders} </div>
       </div>
       <div className={styles.cardsSection}>
-          {data?.attendees ? data?.attendees.map( attender =>  <AttenderCard attender={attender}/>) : <div className="loading">Učitavanje</div>}
+          {data?.attendees ? data?.attendees.map( attender =>  <AttenderCard attender={attender}/>) : <div className="loading">Učitavanje...</div>}
       </div>
     </div>
   )
