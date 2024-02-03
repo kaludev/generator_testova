@@ -1,8 +1,9 @@
 .cardEvent {
     width: 100%;
-    max-width: 200px;
+    max-width: 260px;
     position: relative;
-    height: 120px;
+    min-height: 120px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +25,9 @@
     width: 100%;
     font-size: 22px;
     font-weight: 600;
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap;
 }
 
 .eventDesc{
@@ -35,4 +39,41 @@
 .eventNumber{
     width: 100%;
     font-size: 14px;
+}
+.createEvent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: var(--body-background);
+    background-color: var(--main-color);
+    outline: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.createEvent:hover {
+    background-color: transparent;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.eventClass{
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+}
+
+.eventClass:hover{
+    color: var(--main-color);
+}
+
+.eventClass:not(:first-child):before{
+    position: relative;
+    content: "";
+    width: 100%;
+    height: 1px;
+    display: block;
+    background-color: #d3d3d3;
+    margin: 2px 0;
 }

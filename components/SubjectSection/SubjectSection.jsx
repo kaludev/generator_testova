@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import styles from "./SubjectSection.module.css"
-import cardStyles from "../ClassCard/ClassCard.module.css"
+import styles from "../ClassSection/ClassSection.module.css";
+import cardStyles from "../ClassCard/ClassCard.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import {toast} from 'react-toastify';
 import { FaPlus } from "react-icons/fa";
@@ -86,18 +86,17 @@ export default function SubjectSection(){
         <div>
             <div className={styles.cardsMainSection}>
                 <div className={styles.cardsSection}>
-                
                     {overlay && <div className={styles.overlay}> 
-                        <input type="text" className={styles.inputCode} value={subject.name} placeholder="Unesite naziv odeljenja" onChange={handleChange} autoFocus/> 
-                        {chosenClasses.map(className => <div key={className._id} onClick={() => handleDelete(className._id)}>{className.name}</div>)}
-                        <select name="classes" id="classes" onChange={handleSelectChange}>
-                            <option value=""></option>
+                        <input type="text" className={styles.inputCode} value={subject.name} placeholder="Unesite naziv predmeta" onChange={handleChange} autoFocus/> 
+                        <select className={styles.inputSelect} name="classes" id="classes" onChange={handleSelectChange}>
+                            <option value="">Izaberite odeljenje</option>
                             {classes.map(className => <option key={className._id} value={className._id}>{className.name}</option>)}
                         </select>
-                        <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Odeljenje</button>
-                        <button className={`${styles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
+                        <div className={styles.chosenClasses}>{chosenClasses.map(className => <div key={className._id} onClick={() => handleDelete(className._id)}>{className.name},</div>)}</div>
+                        <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Predmet</button>
+                        <button className={`${styles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}}>Odustani</button>
                     </div>}
-                    {!overlay && <button className={`${cardStyles.cardEvent} ${styles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
+                    {!overlay && <button className={`${cardStyles.cardEvent} ${cardStyles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
                     {subjects ?  subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div className="loading">Učitavanje...</div>}
                 </div>
             </div>
