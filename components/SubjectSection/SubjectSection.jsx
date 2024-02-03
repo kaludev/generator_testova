@@ -97,7 +97,7 @@ export default function SubjectSection(){
                         <button className={`${styles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}}>Odustani</button>
                     </div>}
                     {!overlay && <button className={`${cardStyles.cardEvent} ${cardStyles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
-                    {subjects ?  subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div className="loading">Učitavanje...</div>}
+                    {subjects.length > 0 ?  subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div className="loading">Učitavanje...</div>}
                 </div>
             </div>
         </div>
