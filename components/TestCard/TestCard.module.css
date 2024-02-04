@@ -147,14 +147,17 @@
 }
 
 .secondaryButton {
-    height: 20px;
+    height: 50px;
     padding: 0 5px;
     margin: 0;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
 }
 
 .secondaryButton:hover {
-    background-color: transparent;
-    color: var(--main-color);
+    background-color: var(--main-color);
+    color: white;
+    border: #fff;
     border: none;
 }
 

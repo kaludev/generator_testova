@@ -21,8 +21,8 @@ export const POST = async (request) =>{
     }
     const data = await request.json();
     const chapters = await Chapter.find({classId:data.classId,subjectId:data.subjectId});
-    const className = await classCode.find({_id:data.classId});
-    const subjectId = await Subject.find({_id:data.subjectId});
+    const className = await classCode.findOne({_id:data.classId},{_id:0 ,name:1,code:1,numOfAttenders:1});
+    const subjectId = await Subject.findOne({_id:data.subjectId}, {_id:0,name:1});
     return new Response(JSON.stringify({
         ok: true,
         data: chapters,

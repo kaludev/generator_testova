@@ -1,0 +1,155 @@
+.cardEvent {
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    margin: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.eventMain {
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.eventName {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.primaryButton {
+    padding: 10px 45px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.primaryButton,
+.secondaryButton {
+    width: 250px;
+    padding: 10px 45px;
+    margin: 10px 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.primaryButton:hover {
+    color: var(--main-color);
+}
+
+.cardsMainSection {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin: 80px auto 0 auto;
+}
+
+.cardsHeaderSection{
+    width: 100%;
+    height: 120px;
+    background-color: var(--main-color);
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cardsSection {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.name{
+    width: 100%;
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+    padding: 20px 0 0px 20px;
+}
+
+.code{
+    width: 50%;
+    font-size: 16px;
+    color: #fff;
+    padding: 0px 0 5px 20px;
+}
+
+.attendees{
+    width: 50%;
+    font-size: 16px;
+    color: #fff;
+    padding: 0px 30px 5px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.copy{
+    margin-left: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.createEvent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: var(--body-background);
+    background-color: var(--main-color);
+    outline: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.createEvent:hover {
+    background-color: transparent;
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--body-background);
+    z-index: 2;
+}
+
+.inputCode {
+    width: 250px;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 3px solid transparent;
+    font-size: 16px;
+    outline: none;
+}
+
+.inputCode:active,
+.inputCode:focus {
+    border: 3px solid var(--main-color);
+}
+
+
+@media only screen and (max-width: 800px) {
+    .cardsSection {
+        justify-content: center;
+    }
+}

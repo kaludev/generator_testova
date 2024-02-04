@@ -25,10 +25,10 @@ export const POST = async (request) =>{
             classId: data.classId,
             subjectId: data.subjectId
         }
-        await Chapter.create(className);
+        const chapter = await Chapter.create(className);
         return new Response(JSON.stringify({
             ok:true,
-            data: className
+            data: chapter
         }),{status: statusCodes.OK});
     }catch (e) {
         return new Response(JSON.stringify({
