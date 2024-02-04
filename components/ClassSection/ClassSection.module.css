@@ -25,24 +25,6 @@
     flex-wrap: wrap;
 }
 
-.createEvent {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    color: var(--body-background);
-    background-color: var(--main-color);
-    outline: none;
-    border: 2px solid transparent;
-    cursor: pointer;
-}
-
-.createEvent:hover {
-    background-color: transparent;
-    border: 2px solid var(--main-color);
-    color: var(--main-color);
-}
-
 .overlay {
     width: 100%;
     height: 100%;
@@ -70,6 +52,29 @@
 .inputCode:active,
 .inputCode:focus {
     border: 3px solid var(--main-color);
+}
+
+.inputSelect{
+    width: 250px;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: 3px solid transparent;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    color: #313131;
+}
+
+.chosenClasses{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 250px;
+}
+
+.chosenClasses *{
+    padding: 0 4px;
 }
 
 @media only screen and (max-width: 800px) {

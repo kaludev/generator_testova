@@ -54,7 +54,7 @@ const Nav = ({setMenuVisible}) => {
               <Link className={`${styles.navLink} ${styles.navIcon}`} href="/"><FaHome /></Link>
           </li>
           <li>
-              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/tests"><FaClipboardList /></Link>
+              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/subjects"><FaClipboardList /></Link>
           </li>
           
           {session?.user.isSuperAdmin && <li>

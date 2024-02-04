@@ -49,8 +49,8 @@ const HeroForm = () => {
         
         {session?.user.isSuperAdmin ?
         <div>
-          <Link href="/tests"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj predmete</button></Link>
-          <Link href="/classes"><button className={`${styles.secondaryButton} secondaryButton`}>Pregledaj učionice</button></Link>
+          <Link href="/subjects"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj predmete</button></Link>
+          <Link href="/classes"><button className={`${styles.secondaryButton} secondaryButton`}>Pregledaj odeljenja</button></Link>
         </div> 
         :
         session?.user.isVerified ? 
