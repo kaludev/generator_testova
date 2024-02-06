@@ -56,7 +56,8 @@
     background-color: var(--body-background);
     color: var(--main-color);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .cardsSection {
@@ -70,8 +71,9 @@
 
 .cardsNavigation{
     font-size: 22px;
-    padding: 10px 20px;
+    margin: 10px 20px;
     width: 50px;
+    cursor: pointer;
 }
 
 .name{
