@@ -60,7 +60,7 @@ const handleChange = (e) => {
                     <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
       </div>}
         <div className={styles.cardsSection}>
-          {chapters?.length > 0 ? chapters  ? chapters.map( chapter =>  <TestCard chapter={chapter} handleEdit={() => handleEdit(chapter._id)} handleDelete={() => handleDelete(chapter._id)} link={"/chapter/"+ chapter?._id}/>) : <div className="loading">Učitavanje...</div> : <div className="loading">Učitavanje...</div>}
+          {chapters?.length > 0 ? chapters  ? chapters.map( chapter =>  <TestCard chapter={chapter} handleEdit={() => handleEdit(chapter._id)} handleDelete={() => handleDelete(chapter._id)} link={"/chapter/"+ chapter?._id}/>) : <div className="loading">Učitavanje...</div> : <div>Ne postoje testovi</div>}
       </div>
     </div>
   )
