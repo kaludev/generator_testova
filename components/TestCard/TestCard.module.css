@@ -87,6 +87,9 @@
     font-size: 24px;
     font-weight: 700;
     padding: 10px 0;
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap;
 }
 
 .eventOrgName {
@@ -102,6 +105,9 @@
     color: #000000c4;
     line-height: 19px;
     padding-bottom: 5px;
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap;
 }
 
 .primaryButton {
