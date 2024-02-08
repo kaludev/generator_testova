@@ -82,9 +82,9 @@ const SideNav = ({menuVisible,setMenuVisible}) => {
                 <li>
                     <Link className={styles.sideNavLink} href="/">Početna</Link>
                 </li>
-                <li>
-                    <Link className={styles.sideNavLink} href="/subjects">Predmeti</Link>
-                </li>
+                {session?.user && <li>
+              <Link className={`${styles.navLink} ${styles.navIcon}`} href="/subjects">Predmeti</Link>
+          </li>}
                 {session?.user.isSuperAdmin && <li>
                     <Link className={styles.sideNavLink} href="/classes">Odeljenja</Link>
                 </li>}
@@ -124,9 +124,7 @@ const SideNav = ({menuVisible,setMenuVisible}) => {
           
         </div>
       </div>
-
     </>
-    
   );
 };
 
