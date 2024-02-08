@@ -22,7 +22,6 @@ const HeroForm = () => {
 
     const handleChange = (e) => {
       setCode(e.target.value);
-      console.log(code)
     }
     const handleSubmit = async (e) => {
       e.preventDefault();

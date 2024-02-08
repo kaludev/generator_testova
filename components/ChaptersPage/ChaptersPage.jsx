@@ -7,7 +7,7 @@ import {toast} from 'react-toastify';
 import TestCard from '@components/TestCard/TestCard';
 import Link from 'next/link';
 
-const ChaptersPage = ({chapters,setChapters,subject,classes,classId,subjectId}) => {
+const ChaptersPage = ({loading,chapters,setChapters,subject,classes,classId,subjectId}) => {
   const [overlay, setOverlay] = useState(false);
   const [chapterName,setChapterName] = useState('');
 
@@ -18,7 +18,6 @@ const ChaptersPage = ({chapters,setChapters,subject,classes,classId,subjectId}) 
         body: JSON.stringify({ name: chapterName,classId:classId,subjectId:subjectId})
     });
     const data = await res.json();
-    console.log(data);
     if(!data.ok){
         toast.error("Greška: " + data.message);
     }else{
@@ -41,7 +40,6 @@ const handleDelete = (id) => {
 }
 const handleChange = (e) => {
     setChapterName(e.target.value);
-    console.log(chapterName);
 }
   return (
     <div className={styles.cardsMainSection}>
@@ -60,7 +58,7 @@ const handleChange = (e) => {
                     <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
       </div>}
         <div className={styles.cardsSection}>
-          {chapters?.length > 0 ? chapters  ? chapters.map( chapter =>  <TestCard chapter={chapter} handleEdit={() => handleEdit(chapter._id)} handleDelete={() => handleDelete(chapter._id)} link={"/chapter/"+ chapter?._id}/>) : <div className="loading">Učitavanje...</div> : <div>Ne postoje testovi</div>}
+          {!loading ? (chapters?.length > 0 ? chapters.map( chapter =>  <TestCard key={chapter._id} chapter={chapter} handleEdit={() => handleEdit(chapter._id)} handleDelete={() => handleDelete(chapter._id)} link={"/chapter/"+ chapter?._id}/>) : <div>Ne postoje testovi</div>) : <div className="loading">Učitavanje...</div>}
       </div>
     </div>
   )

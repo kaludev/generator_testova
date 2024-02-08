@@ -16,12 +16,10 @@ export default function ClassSection(){
         const fetchData = async () => {
             const res = await fetch('/api/class/getClasses');
             const data = await res.json();
-            console.log(data);
             if(!data.ok){
                 toast.error("Greška: "+ data.message );
             }else{
                 await setClasses(data.data);
-                console.log(classes);
             }
         };
         fetchData();
@@ -34,7 +32,6 @@ export default function ClassSection(){
             body: JSON.stringify({ name: className})
         });
         const data = await res.json();
-        console.log(data);
         if(!data.ok){
             toast.error("Greška: " + data.message);
         }else{
@@ -51,7 +48,6 @@ export default function ClassSection(){
 
     const handleChange = (e) => {
         setClassName(e.target.value);
-        console.log(className);
     }
     return(
         <div className={styles.cardsMainSection}>

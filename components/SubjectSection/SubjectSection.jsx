@@ -17,12 +17,10 @@ export default function SubjectSection(){
         const fetchData = async () => {
             const res = await fetch('/api/class/getClasses');
             const data = await res.json();
-            console.log(data);
             if(!data.ok){
                 toast.error("Greška: "+ data.message );
             }else{
                 await setClasses(data.data);
-                console.log(classes);
             }
         };
         fetchData();
@@ -35,12 +33,10 @@ export default function SubjectSection(){
         const fetchData = async () => {
             const res = await fetch('/api/subject/getSubjects');
             const data = await res.json();
-            console.log(data);
             if(!data.ok){
                 toast.error("Greška: "+ data.message );
             }else{
                 await setSubjects(data.data);
-                console.log(data.data);
             }
         };
         fetchData();
@@ -53,7 +49,6 @@ export default function SubjectSection(){
             body: JSON.stringify(subject)
         });
         const data = await res.json();
-        console.log(data);
         if(!data.ok){
             toast.error("Greška: " + data.message);
         }else{
@@ -70,17 +65,20 @@ export default function SubjectSection(){
 
     const handleChange = (e) => {
         setSubject({... subject, name:e.target.value});
-        console.log(subject);
     }
 
     const handleSelectChange = (e) => {
-        console.log(e.target.value);
         
         const filteredClasses = classes.filter(className => {if(className._id == e.target.value){setChosenClasses([...chosenClasses,className]);setSubject({...subject,classes:[...subject.classes,e.target.value]})}return className._id !== e.target.value})
         
         setClasses(filteredClasses)
     }
     const handleDelete = (id) => {
+
+        const filteredClasses = chosenClasses.filter(className => {if(className._id == id){setClasses([...classes,className]);}return className._id !== id})
+        const chosenClassesIds = filteredClasses.map(className => className._id)
+        setChosenClasses(filteredClasses)
+        setSubject({...subject,classes:[...chosenClassesIds]})
     }
     return(
         <div>

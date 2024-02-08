@@ -29,7 +29,6 @@ export const GET = async (request,{params}) =>{
     const attendees = await User.find({className: className.name},{_id:0, email:1,username:1,name:1,image:1});
     className.attendees = attendees;
     const data = {...className._doc, attendees: attendees}
-    console.log(data);
     return new Response(JSON.stringify({
         ok: true,
         data: data
