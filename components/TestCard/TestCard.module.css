@@ -142,32 +142,6 @@
     outline: none;
 }
 
-.eventMenu {
-    position: absolute;
-    top: 0;
-    right: 0;
-    flex-direction: column;
-    width: 190px;
-    background-color: var(--body-background);
-    display: none;
-}
-
-.eventMenu.active {
-    display: flex;
-}
-
-.eventMenuItem {
-    height: 40px;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-.eventMenuItem:hover {
-    background-color: var(--body-background-dark);
-}
-
-
 @media only screen and (max-width: 800px) {
     .cardsSection {
         justify-content: center;

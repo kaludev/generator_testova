@@ -26,10 +26,10 @@ export default function TestCard({chapter,link,handleEdit,handleDelete}){
                                     <FaEllipsisV className={styles.eventHeaderRightLink} onClick={() => setActiveMenu(true)}/>
                                 </div>
                             </div>
-                        <div className={`${styles.eventMenu} ${activeMenu ? styles.active : ""}`}>
-                                {handleEdit && <button onClick={handleEdit} className={styles.eventMenuItem}>Izmeni</button>}
-                                {handleDelete && <button onClick={handleDelete} className={styles.eventMenuItem}>Obriši</button>}
-                                {handleDelete && <button onClick={() => setActiveMenu(false)} className={styles.eventMenuItem + ""}>Otkaži</button>}
+                        <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
+                                {handleEdit && <button onClick={handleEdit} className="eventMenuItem">Izmeni</button>}
+                                {handleDelete && <button onClick={handleDelete} className="eventMenuItem">Obriši</button>}
+                                {handleDelete && <button onClick={() => setActiveMenu(false)} className="eventMenuItem">Otkaži</button>}
                         </div>
                     </div>
                 

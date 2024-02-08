@@ -1,11 +1,11 @@
 "use client"
 
-import styles from "./AttenderCard.module.css"
+import styles from "./CommentCard.module.css"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { FaEllipsisV } from "react-icons/fa";
-export default function AttenderCard({attender}){
+export default function CommentCard({attender}){
 
     const[activeMenu, setActiveMenu] = useState(false);
     return(
@@ -15,7 +15,7 @@ export default function AttenderCard({attender}){
                 <Image src={attender.image} className={styles.profileImage} width={50} height={50}/>
                 <div className={styles.eventMain}>
                     <div className={styles.eventName}>{attender.name}</div>
-                    <div className={styles.eventUsername}>@{attender.username}</div>
+                    <div className={styles.eventUsername}>ovde ide pitanje za test</div>
                 </div>
             </a>
             <FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>
@@ -24,8 +24,5 @@ export default function AttenderCard({attender}){
                 {<button onClick={() => setActiveMenu(false)} className="eventMenuItem">Otkaži</button>}
             </div>
         </div>
-        
-        
-        
     )
 }
