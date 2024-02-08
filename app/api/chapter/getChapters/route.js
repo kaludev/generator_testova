@@ -1,6 +1,7 @@
 import { authOptions } from '@app/api/auth/[...nextauth]/route';
 import Chapter from '@models/chapter';
 import classCode from '@models/classCodes';
+import Question from '@models/question';
 import Subject from '@models/subject';
 import statusCodes from 'http-status-codes'
 import { getServerSession } from 'next-auth'

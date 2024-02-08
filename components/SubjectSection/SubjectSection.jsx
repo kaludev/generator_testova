@@ -7,42 +7,59 @@ import "react-toastify/dist/ReactToastify.css";
 import {toast} from 'react-toastify';
 import { FaPlus } from "react-icons/fa";
 import SubjectCard from "@components/SubjectCard/SubjectCard";
+import { useSession } from "next-auth/react";
 
 export default function SubjectSection(){
+    const {data:session} = useSession();
     const [subjects, setSubjects] = useState([]);
     const [overlay, setOverlay] = useState(false);
     const [classes, setClasses] = useState([]);
     const [chosenClasses , setChosenClasses] = useState([]);
     useEffect(() =>{
         const fetchData = async () => {
-            const res = await fetch('/api/class/getClasses');
-            const data = await res.json();
-            if(!data.ok){
-                toast.error("Greška: "+ data.message );
-            }else{
-                await setClasses(data.data);
+            if(session?.user){
+                if(session.user.isSuperAdmin){
+                    const res = await fetch('/api/class/getClasses');
+                    const data = await res.json();
+                    if(!data.ok){
+                        toast.error("Greška: "+ data.message );
+                    }else{
+                        await setClasses(data.data);
+                    }
+                }else{
+                    console.log("Uradi, nisi admin");
+                }
             }
         };
         fetchData();
-    },[])
+    },[session])
     const [subject, setSubject] = useState({
         name: '',
         classes: []
     });
     useEffect(() =>{
         const fetchData = async () => {
-            const res = await fetch('/api/subject/getSubjects');
-            const data = await res.json();
-            if(!data.ok){
-                toast.error("Greška: "+ data.message );
-            }else{
-                await setSubjects(data.data);
+            if(session?.user){
+                if(session.user.isSuperAdmin){
+                    const res = await fetch('/api/subject/getSubjects');
+                    const data = await res.json();
+                    if(!data.ok){
+                        toast.error("Greška: "+ data.message );
+                    }else{
+                        await setSubjects(data.data);
+                    }
+                }else{
+                    console.log("Uradi, nisi admin");
+                }
             }
+            
+            
         };
         fetchData();
-    },[])
+    },[session])
 
     const handleSubmit = async (e) =>{
+
         const res = await fetch('/api/subject/create', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -83,20 +100,30 @@ export default function SubjectSection(){
     return(
         <div>
             <div className={styles.cardsMainSection}>
-                <div className={styles.cardsSection}>
-                    {overlay && <div className={styles.overlay}> 
-                        <input type="text" className={styles.inputCode} value={subject.name} placeholder="Unesite naziv predmeta" onChange={handleChange} autoFocus/> 
-                        <select className={styles.inputSelect} name="classes" id="classes" onChange={handleSelectChange}>
-                            <option value="">Izaberite odeljenje</option>
-                            {classes.map(className => <option key={className._id} value={className._id}>{className.name}</option>)}
-                        </select>
-                        <div className={styles.chosenClasses}>{chosenClasses.map(className => <div key={className._id} onClick={() => handleDelete(className._id)}>{className.name},</div>)}</div>
-                        <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Predmet</button>
-                        <button className={`${styles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}}>Odustani</button>
-                    </div>}
-                    {!overlay && <button className={`${cardStyles.cardEvent} ${cardStyles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
-                    {subjects.length > 0 ?  subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div className="loading">Učitavanje...</div>}
-                </div>
+                {
+                    session?.user.isSuperAdmin ? (
+                        <div className={styles.cardsSection}>
+                            
+                                {overlay && <div className={styles.overlay}> 
+                                    <input type="text" className={styles.inputCode} value={subject.name} placeholder="Unesite naziv predmeta" onChange={handleChange} autoFocus/> 
+                                    <select className={styles.inputSelect} name="classes" id="classes" onChange={handleSelectChange}>
+                                        <option value="">Izaberite odeljenje</option>
+                                        {classes.map(className => <option key={className._id} value={className._id}>{className.name}</option>)}
+                                    </select>
+                                    <div className={styles.chosenClasses}>{chosenClasses.map(className => <div key={className._id} onClick={() => handleDelete(className._id)}>{className.name},</div>)}</div>
+                                    <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Predmet</button>
+                                    <button className={`${styles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}}>Odustani</button>
+                                </div>}
+
+                                {!overlay && <button className={`${cardStyles.cardEvent} ${cardStyles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
+                            
+                            {subjects.length > 0 ?  subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div className="loading">Učitavanje...</div>}
+                        </div>
+                    ) : <div>
+                        niste admin 
+                    </div>
+                }
+                
             </div>
         </div>
         

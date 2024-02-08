@@ -46,7 +46,7 @@ const handleChange = (e) => {
       <div className={styles.cardsHeaderSection}>
           <div className={styles.name}>{subject?.name} {classes?.name}</div>
           <div className={styles.code}>{classes?.code} <FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(classes?.code)}}/></div>
-          <div className={styles.attendees}>Broj učenika: {classes.numOfAttenders} </div>
+          <div className={styles.attendees}>Broj učenika: {classes?.numOfAttenders} </div>
       </div>
       <div className={styles.cardsNavigationSection}>
         <div className={styles.cardsNavigation}><Link href="/subjects"><FaArrowLeft /></Link></div>
