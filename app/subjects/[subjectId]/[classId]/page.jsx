@@ -7,9 +7,10 @@ import ChaptersPage from "@components/ChaptersPage/ChaptersPage";
 
 const Class = () => {
     const {subjectId,classId} = useParams();
-    const [chapters, setChapters] = useState({});
+    const [chapters, setChapters] = useState([]);
     const [className, setClassName] = useState('')
     const [subject, setSubject] = useState('')
+    const [loading, setLoading] = useState(true)
     useEffect(() =>{
         const fetchData = async () =>{
             const res = await fetch('/api/chapter/getChapters',{
@@ -25,13 +26,15 @@ const Class = () => {
                 await setChapters(data.data);
                 await setClassName(data.className);
                 await setSubject(data.subjectId)
+
             }
+            await setLoading(false);
         }   
         fetchData();
     },[])
 
     return (
-        chapters && <ChaptersPage chapters={chapters} classes={className} subject={subject} classId={classId} subjectId={subjectId} setChapters={setChapters}/>
+        chapters && <ChaptersPage loading ={loading} chapters={chapters} classes={className} subject={subject} classId={classId} subjectId={subjectId} setChapters={setChapters}/>
     )
 }
 

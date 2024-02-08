@@ -8,7 +8,7 @@ import {toast} from 'react-toastify';
 const Chapter = () => {
     const {id} = useParams();
     const [data, setData] = useState({});
-    useEffect(() =>{99.
+    useEffect(() =>{
         const fetchData = async () =>{
             const res = await fetch('/api/chapter/getChapter/'+ id);
             const data = await res.json();
