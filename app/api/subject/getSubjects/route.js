@@ -13,10 +13,14 @@ export const GET = async (request) =>{
         }),{status: statusCodes.UNAUTHORIZED})
     }
     if(!session?.user.isSuperAdmin){
+        const className = await classCode.findOne({name: session?.user.class},{_id:1})
+        console.log(className);
+        const subject = await Subject.find({classes: className._id},{_id:1,name:1})
+        console.log(subject)
         return new Response(JSON.stringify({
-            ok:false,
-            message:"Morate biti Miloye"
-        }),{status: statusCodes.UNAUTHORIZED});
+            ok: true,
+            data: subject
+        }),{status: statusCodes.OK})
     }
     const subjects = await Subject.find({}).populate("classes");
     return new Response(JSON.stringify({

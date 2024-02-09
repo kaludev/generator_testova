@@ -14,6 +14,7 @@ export default function SubjectSection(){
     const [subjects, setSubjects] = useState([]);
     const [overlay, setOverlay] = useState(false);
     const [classes, setClasses] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [chosenClasses , setChosenClasses] = useState([]);
     useEffect(() =>{
         const fetchData = async () => {
@@ -26,8 +27,6 @@ export default function SubjectSection(){
                     }else{
                         await setClasses(data.data);
                     }
-                }else{
-                    console.log("Uradi, nisi admin");
                 }
             }
         };
@@ -39,27 +38,21 @@ export default function SubjectSection(){
     });
     useEffect(() =>{
         const fetchData = async () => {
-            if(session?.user){
-                if(session.user.isSuperAdmin){
-                    const res = await fetch('/api/subject/getSubjects');
-                    const data = await res.json();
-                    if(!data.ok){
-                        toast.error("Greška: "+ data.message );
-                    }else{
-                        await setSubjects(data.data);
-                    }
-                }else{
-                    console.log("Uradi, nisi admin");
-                }
+            const res = await fetch('/api/subject/getSubjects');
+            const data = await res.json();
+            if(!data.ok){
+                toast.error("Greška: "+ data.message );
+            }else{
+                
+                await setSubjects(data.data);
+                await setLoading(false);
             }
-            
-            
         };
         fetchData();
-    },[session])
+    },[])
 
     const handleSubmit = async (e) =>{
-
+        setLoading(true);
         const res = await fetch('/api/subject/create', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -76,7 +69,7 @@ export default function SubjectSection(){
 
             setSubjects(copy);
         }
-        
+        setLoading(false);
         setOverlay(false);
     }
 
@@ -117,10 +110,10 @@ export default function SubjectSection(){
 
                                 {!overlay && <button className={`${cardStyles.cardEvent} ${cardStyles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
                             
-                            {subjects.length > 0 ?  subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div className="loading">Učitavanje...</div>}
+                            {loading ? subjects.length>0 ? subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> : <div className="loading">Učitavanje...</div>}
                         </div>
                     ) : <div>
-                        niste admin 
+                        {loading ? subjects.length>0 ? subjects?.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> : <div className="loading">Učitavanje...</div>}
                     </div>
                 }
                 
