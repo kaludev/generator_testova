@@ -37,22 +37,24 @@ export default function SubjectSection(){
         classes: []
     });
     useEffect(() =>{
+        setLoading(true)
         const fetchData = async () => {
             const res = await fetch('/api/subject/getSubjects');
             const data = await res.json();
             if(!data.ok){
                 toast.error("Greška: "+ data.message );
             }else{
+                console.log(data.data)
+
+                setLoading(value=>!value);
+                setSubjects(data.data);
                 
-                await setSubjects(data.data);
-                await setLoading(false);
             }
         };
         fetchData();
     },[])
 
     const handleSubmit = async (e) =>{
-        setLoading(true);
         const res = await fetch('/api/subject/create', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -112,7 +114,7 @@ export default function SubjectSection(){
                             
                             {loading ? subjects.length>0 ? subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> : <div className="loading">Učitavanje...</div>}
                         </div>
-                    ) : <div>
+                    ) : <div className={styles.cardsSection}>
                         {loading ? subjects.length>0 ? subjects?.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> : <div className="loading">Učitavanje...</div>}
                     </div>
                 }
