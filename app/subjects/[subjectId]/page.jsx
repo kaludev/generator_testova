@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import {toast} from 'react-toastify';
+import ChaptersPage from "@components/ChaptersPage/ChaptersPage";
 const chaptersPage = () => {
     const {subjectId} = useParams();
     const [chapters, setChapters] = useState([]);
@@ -33,7 +34,7 @@ const chaptersPage = () => {
     },[])
 
   return (
-    <div>ChaptersPage</div>
+    chapters && <ChaptersPage loading ={loading} chapters={chapters} classes={className} subject={subject} classId={className._id} subjectId={subjectId} setChapters={setChapters}/>
   )
 }
 

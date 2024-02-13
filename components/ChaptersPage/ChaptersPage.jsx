@@ -45,12 +45,12 @@ const handleChange = (e) => {
     <div className={styles.cardsMainSection}>
       <div className={styles.cardsHeaderSection}>
           <div className={styles.name}>{subject?.name} {classes?.name}</div>
-          <div className={styles.code}>{classes?.code} <FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(classes?.code)}}/></div>
-          <div className={styles.attendees}>Broj učenika: {classes?.numOfAttenders} </div>
+          {classes?.code && <div className={styles.code}>{classes?.code} <FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(classes?.code)}}/></div>}
+          {classes?.numOfAttenders && <div className={styles.attendees}>Broj učenika: {classes?.numOfAttenders} </div>}
       </div>
       <div className={styles.cardsNavigationSection}>
         <div className={styles.cardsNavigation}><Link href="/subjects"><FaArrowLeft /></Link></div>
-        {!overlay && <div className={styles.cardsNavigation} onClick={() => {setOverlay(value => !value);}}><FaPlus /></div>}
+        {classes?.code && (!overlay && <div className={styles.cardsNavigation} onClick={() => {setOverlay(value => !value);}}><FaPlus /></div>)}
       </div>
       {overlay && <div className={overlayStyles.overlay}> 
                     <input type="text" className={overlayStyles.inputCode} value={chapterName} placeholder="Unesite naziv testa" onChange={handleChange} autoFocus/> 
@@ -58,7 +58,7 @@ const handleChange = (e) => {
                     <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
       </div>}
         <div className={styles.cardsSection}>
-          {!loading ? (chapters?.length > 0 ? chapters.map( chapter =>  <TestCard key={chapter._id} chapter={chapter} handleEdit={() => handleEdit(chapter._id)} handleDelete={() => handleDelete(chapter._id)} link={"/chapter/"+ chapter?._id}/>) : <div>Ne postoje testovi</div>) : <div className="loading">Učitavanje...</div>}
+          {!loading ? (chapters?.length > 0 ? chapters.map( chapter =>  <TestCard key={chapter._id} chapter={chapter} handleEdit={classes?.code ? () => handleEdit(chapter._id) : null} handleDelete={classes?.code ? () => handleDelete(chapter._id) : null} link={"/chapter/"+ chapter?._id}/>) : <div>Ne postoje testovi</div>) : <div className="loading">Učitavanje...</div>}
       </div>
     </div>
   )

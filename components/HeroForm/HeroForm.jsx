@@ -55,10 +55,11 @@ const HeroForm = () => {
         session?.user.isVerified ? 
         <div>
           <p className={styles.navP}>Vi ste deo odeljenja {session?.user.class}</p> 
-          <Link href="/tests"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj predmete</button></Link>
+          <Link href="/subjects"><button className={`${styles.primaryButton} primaryButton`}>Pregledaj predmete</button></Link>
         </div>
         :
         <div>
+          <p className={styles.navP}>Ostavi pitanje koje tebi odgovara i očekuj ga na testu ...</p>
           <input type="text" className={styles.inputCode} value={code} placeholder="Unesite kod" onChange={handleChange}/> 
           <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Pronađi učionicu</button>
         </div> }

@@ -23,7 +23,7 @@ export default function TestCard({chapter,link,handleEdit,handleDelete}){
                                 
                                 <div className={styles.eventHeaderRight} style={{color: (chapter?.due?.getTime() > new Date().getTime()? "var(--success-color)" : "var(--main-color)" )}}>
                                     <FaRegClock />
-                                    <FaEllipsisV className={styles.eventHeaderRightLink} onClick={() => setActiveMenu(true)}/>
+                                    {handleEdit &&  <FaEllipsisV className={styles.eventHeaderRightLink} onClick={() => setActiveMenu(true)}/>}
                                 </div>
                             </div>
                         <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
