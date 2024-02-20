@@ -124,14 +124,12 @@ const Profile = () => {
             const fetchPosts = async () => {
                 try{
                     const res = await fetch('/api/event/getmyevents');
-                    console.log(res);
+
                     const posts = await res.json()
                     if(!res.ok) return new Error(res.text);
                     setData(posts);
-                    console.log(posts);
                 }catch(e){
                     toast.error(e.message);
-                    console.log(e);
                 }
               };
               fetchPosts();
@@ -154,7 +152,6 @@ const Profile = () => {
             setData(copy);
         }catch(e){
             toast.error(e.message);
-            console.log(e);
         }
     }
     return (

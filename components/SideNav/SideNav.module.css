@@ -10,7 +10,7 @@
     pointer-events: none;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #f1f1e3;
+    background-color: var(--body-background);
     transform: translateX(400px);
     overflow-y: auto;
     overflow-x: hidden;

@@ -13,6 +13,10 @@ const chapterSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "classCode"
     },
+    due:{
+        type: Date,
+
+    },
     questions:{
         type: [Schema.Types.ObjectId],
         ref: "Question",

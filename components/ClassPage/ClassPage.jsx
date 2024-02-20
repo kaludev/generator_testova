@@ -4,7 +4,6 @@ import { FaRegClone, FaArrowLeft } from "react-icons/fa";
 import Link from 'next/link';
 
 const ClassPage = ({data}) => {
-    console.log(data)
   return (
     <div className={styles.cardsMainSection}>
       <div className={styles.cardsHeaderSection}>

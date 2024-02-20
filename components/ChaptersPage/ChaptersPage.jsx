@@ -1,13 +1,13 @@
-import styles from './ChaptersPage.module.css'
-import { FaRegClone } from "react-icons/fa";
+import styles from '../ClassPage/ClassPage.module.css'
+import overlayStyles from '../ClassSection/ClassSection.module.css'
+import { FaRegClone, FaArrowLeft, FaPlus } from "react-icons/fa";
 import { useState } from 'react';
-import cardStyles from "../ClassCard/ClassCard.module.css"
 import "react-toastify/dist/ReactToastify.css";
 import {toast} from 'react-toastify';
-import { FaPlus } from "react-icons/fa";
 import TestCard from '@components/TestCard/TestCard';
+import Link from 'next/link';
 
-const ChaptersPage = ({chapters,setChapters,subject,classes,classId,subjectId}) => {
+const ChaptersPage = ({loading,chapters,setChapters,subject,classes,classId,subjectId}) => {
   const [overlay, setOverlay] = useState(false);
   const [chapterName,setChapterName] = useState('');
 
@@ -18,7 +18,6 @@ const ChaptersPage = ({chapters,setChapters,subject,classes,classId,subjectId}) 
         body: JSON.stringify({ name: chapterName,classId:classId,subjectId:subjectId})
     });
     const data = await res.json();
-    console.log(data);
     if(!data.ok){
         toast.error("Greška: " + data.message);
     }else{
@@ -41,23 +40,25 @@ const handleDelete = (id) => {
 }
 const handleChange = (e) => {
     setChapterName(e.target.value);
-    console.log(chapterName);
 }
   return (
     <div className={styles.cardsMainSection}>
       <div className={styles.cardsHeaderSection}>
           <div className={styles.name}>{subject?.name} {classes?.name}</div>
-          <div className={styles.code}>{classes?.code} <FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(classes?.code)}}/></div>
-          <div className={styles.attendees}>Broj učenika: {classes.numOfAttenders} </div>
+          {classes?.code && <div className={styles.code}>{classes?.code} <FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(classes?.code)}}/></div>}
+          {classes?.numOfAttenders && <div className={styles.attendees}>Broj učenika: {classes?.numOfAttenders} </div>}
       </div>
-      {overlay && <div className={styles.overlay}> 
-                    <input type="text" className={styles.inputCode} value={chapterName} placeholder="Unesite naziv odeljenja" onChange={handleChange} autoFocus/> 
-                    <button className={`${styles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Odeljenje</button>
-                    <button className={`${styles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
-            </div>}
+      <div className={styles.cardsNavigationSection}>
+        <div className={styles.cardsNavigation}><Link href="/subjects"><FaArrowLeft /></Link></div>
+        {classes?.code && (!overlay && <div className={styles.cardsNavigation} onClick={() => {setOverlay(value => !value);}}><FaPlus /></div>)}
+      </div>
+      {overlay && <div className={overlayStyles.overlay}> 
+                    <input type="text" className={overlayStyles.inputCode} value={chapterName} placeholder="Unesite naziv testa" onChange={handleChange} autoFocus/> 
+                    <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Test</button>
+                    <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
+      </div>}
         <div className={styles.cardsSection}>
-          {!overlay && <button className={`${cardStyles.cardEvent} ${styles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
-          {chapters?.length>0? chapters  ? chapters.map( chapter =>  <TestCard chapter={chapter} handleEdit={() => handleEdit(chapter._id)} handleDelete={() => handleDelete(chapter._id)} link={"/chapter/"+ chapter?._id}/>) : <div className="loading">Učitavanje...</div> : <div className=""></div>}
+          {!loading ? (chapters?.length > 0 ? chapters.map( chapter =>  <TestCard key={chapter._id} chapter={chapter} handleEdit={classes?.code ? () => handleEdit(chapter._id) : null} handleDelete={classes?.code ? () => handleDelete(chapter._id) : null} link={"/chapter/"+ chapter?._id}/>) : <div>Ne postoje testovi</div>) : <div className="loading">Učitavanje...</div>}
       </div>
     </div>
   )

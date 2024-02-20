@@ -9,6 +9,7 @@
   --success-color: #3EB488;
   --secondary-background-: #47cbe5;
   --body-background: #fff7f7;
+  --body-background-dark: #d6d2d2;
 }
 
 * {
@@ -108,4 +109,31 @@ a {
   100% {
     transform: translateY(-50%) rotate(1turn);
   }
+}
+
+/* onClickMenu */
+
+.eventMenu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  flex-direction: column;
+  width: 190px;
+  background-color: var(--body-background);
+  display: none;
+}
+
+.eventMenu.active {
+  display: flex;
+}
+
+.eventMenuItem {
+  height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.eventMenuItem:hover {
+  background-color: var(--body-background-dark);
 }
