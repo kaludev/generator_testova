@@ -14,20 +14,22 @@ const authOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      const sessionUser = await User.findOne({
-        email: session.user.email,
-      });
+      if(session?.user){
+        const sessionUser = await User.findOne({
+          email: session.user.email,
+        });
       
 
-      session.user._id = sessionUser._id.toString();
-      session.user.image = sessionUser.image.toString();
-      session.user.username = sessionUser.username;
-      session.user.name = sessionUser.name;
-      session.user.isSuperAdmin = sessionUser.isSuperAdmin;
-      session.user.isVerified = sessionUser.verified
-      session.user.class = sessionUser.className;
+        session.user._id = sessionUser._id.toString();
+        session.user.image = sessionUser.image.toString();
+        session.user.username = sessionUser.username;
+        session.user.name = sessionUser.name;
+        session.user.isSuperAdmin = sessionUser.isSuperAdmin;
+        session.user.isVerified = sessionUser.verified
+        session.user.class = sessionUser.className;
 
-      return session;
+        return session;
+      }else return undefined;
     },
     async signIn({ profile }) {
       try {
