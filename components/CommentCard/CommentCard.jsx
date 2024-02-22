@@ -11,13 +11,11 @@ export default function CommentCard({question}){
     return(
        
         <div className={styles.cardEvent}>
-            <a className={styles.cardLeft} href={"mailto:" + question?.author?.email}>
                 <Image src={question?.author?.image} className={styles.profileImage} width={50} height={50}/>
                 <div className={styles.eventMain}>
-                    <div className={styles.eventName}>{question?.author?.name}</div>
-                    <div className={styles.eventUsername}>{question?.question}</div>
+                    <div className={styles.eventName}>{question?.author?.name}Ime autora</div>
+                    <div className={styles.eventUsername}>{question?.question}Jako dugacko pitanje koje je ucenik postavio profesoru Jako dugacko pitanje koje je ucenik postavio profesoru Jako dugacko pitanje koje je ucenik postavio profesoru Jako dugacko pitanje koje je ucenik postavio profesoru</div>
                 </div>
-            </a>
             <FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>
             <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
                 {<button className="eventMenuItem">Ukloni</button>}
