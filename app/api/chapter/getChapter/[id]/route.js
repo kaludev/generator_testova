@@ -14,10 +14,22 @@ export const GET = async (request,{params}) =>{
         }),{status: statusCodes.UNAUTHORIZED})
     }
     if(!session.user.isSuperAdmin){
+        const id = params.id;
+        const chapter = await Chapter.findById(id,{_id:1,classId:1,subjectId:1}).populate('classId',{_id:0,name:1,numOfAttenders:1}).populate('subjectId');
+        if(!chapter){
+            return new Response(JSON.stringify({
+                ok:false,
+                message:"Kod je pogrešan"
+            }),{status: statusCodes.BAD_REQUEST});
+        }
+        
+        console.log(chapter);
+        const data = {...chapter._doc}
+        console.log(data);
         return new Response(JSON.stringify({
-            ok:false,
-            message:"Morate biti Miloye"
-        }),{status: statusCodes.UNAUTHORIZED});
+            ok: true,
+            data: data
+        }),{status: statusCodes.OK})
     }
     const id = params.id;
     const chapter = await Chapter.findById(id).populate('questions').populate('classId').populate('subjectId');

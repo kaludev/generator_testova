@@ -3,9 +3,10 @@ import styles from './ChapterPage.module.css'
 import { FaRegClone, FaArrowLeft } from "react-icons/fa";
 import Link from 'next/link';
 import CommentCard from '@components/CommentCard/CommentCard';
+import { useSession } from 'next-auth/react';
 
 const ChapterPage = ({data}) => {
-  
+  const {data:session} = useSession();
 
   return(
        
@@ -13,7 +14,7 @@ const ChapterPage = ({data}) => {
       <div className={styles.cardsHeaderSection}>
           <div className={styles.name}>{data?.name}</div>
           <div className={styles.name}>{data?.subjectId?.name} {data?.classId?.name}</div>
-          <div className={styles.code}>{data?.classId?.code} <FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(data?.code)}}/></div>
+          <div className={styles.code}>{data?.classId?.code} {data?.code &&<FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(data?.code)}}/>}</div>
           <div className={styles.attendees}>Broj učenika: {data?.classId?.numOfAttenders} </div>
       </div>
       <div className={styles.cardsNavigationSection}>

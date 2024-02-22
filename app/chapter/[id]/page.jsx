@@ -12,13 +12,18 @@ const Chapter = () => {
         const fetchData = async () =>{
             const res = await fetch('/api/chapter/getChapter/'+ id);
             const data = await res.json();
-
+            
             if(!data.ok){
                 toast.error("Greška: "+ data.message);
             }else{
-                await setData(data.data);
-                console.log(data.data);
+                if(!data.questions){
+                    const newData = {...data.data, questions:[]};
+                    await setData(newData);
+                }else{
+                    await setData(data.data);
+                }
             }
+            
         }   
         fetchData();
     },[])
