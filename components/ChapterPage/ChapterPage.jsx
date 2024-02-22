@@ -41,11 +41,19 @@ const ChapterPage = ({data}) => {
         <div className={styles.cardsNavigation}><Link href={"/subjects/" + data?.subjectId?._id+ "/"+ data?.classId?._id  }><FaArrowLeft /></Link></div>
       </div>
       <div className={styles.cardsSection}>
-        <div className={styles.cardForm}>
-          <img src={session?.user.image} className={styles.profileImage} width={50} height={50}/>
-          <input type="text"  className={styles.inputText} value={question} placeholder='Postavite pitanje za test' onChange={handleChange}/>
-          {!loading ? <button  className={styles.cardFormSubmit} onClick={handleSubmit} ><FaLocationArrow/></button> : <div className='loading'></div>}
+        {session?.user.isSuperAdmin ?
+        ""
+        :
+        session?.user.isVerified ?
+        <div action="" className={styles.cardForm}>
+          <img src="" className={styles.profileImage} width={50} height={50}/>
+          <input type="text"  className={styles.inputText} placeholder='Postavite pitanje za test'/>
+          <button  className={styles.cardFormSubmit}><FaLocationArrow/></button>
         </div>
+        :
+        ""
+        }
+        <CommentCard/>
           {data?.questions ? data?.questions.map( question =><CommentCard question={question}/>) : <div className="loading">Učitavanje...</div>
           }
       </div>

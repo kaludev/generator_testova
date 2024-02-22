@@ -73,7 +73,6 @@ const HeroForm = () => {
                   className={`${styles.primaryButton} primaryButton`}
                 >Prijavi se</button>
               )))
-        
     )
 }
 

@@ -121,6 +121,7 @@ a {
   width: 190px;
   background-color: var(--body-background);
   display: none;
+  z-index: 99;
 }
 
 .eventMenu.active {
