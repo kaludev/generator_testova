@@ -16,12 +16,7 @@ const Chapter = () => {
             if(!data.ok){
                 toast.error("Greška: "+ data.message);
             }else{
-                if(!data.questions){
-                    const newData = {...data.data, questions:[]};
-                    await setData(newData);
-                }else{
-                    await setData(data.data);
-                }
+                await setData(data.data);
             }
             
         }   
