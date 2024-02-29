@@ -23,7 +23,7 @@ const Chapter = () => {
         fetchData();
     },[])
     return (
-        data && <ChapterPage data={data}/>
+        data && <ChapterPage data={data} setData={setData}/>
     )
 }
 

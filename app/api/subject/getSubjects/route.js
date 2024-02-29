@@ -14,9 +14,9 @@ export const GET = async (request) =>{
     }
     if(!session?.user.isSuperAdmin){
         const className = await classCode.findOne({name: session?.user.class},{_id:1})
-        console.log(className);
+
         const subject = await Subject.find({classes: className._id},{_id:1,name:1})
-        console.log(subject)
+        
         return new Response(JSON.stringify({
             ok: true,
             data: subject

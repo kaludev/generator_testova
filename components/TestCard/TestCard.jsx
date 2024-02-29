@@ -23,13 +23,13 @@ export default function TestCard({chapter,link,handleEdit,handleDelete}){
                                 
                                 <div className={styles.eventHeaderRight} style={{color: (chapter?.due?.getTime() > new Date().getTime()? "var(--success-color)" : "var(--main-color)" )}}>
                                     <FaRegClock />
-                                    {handleEdit &&  <FaEllipsisV className={styles.eventHeaderRightLink} onClick={() => setActiveMenu(true)}/>}
+                                    {handleEdit &&  <FaEllipsisV className={styles.eventHeaderRightLink} onClick={() => setActiveMenu(value=>!value)}/>}
                                 </div>
                             </div>
                         <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
-                                {handleEdit && <button onClick={handleEdit} className="eventMenuItem">Izmeni</button>}
-                                {handleDelete && <button onClick={handleDelete} className="eventMenuItem">Obriši</button>}
-                                {handleDelete && <button onClick={() => setActiveMenu(false)} className="eventMenuItem">Otkaži</button>}
+                                {handleEdit && <button onClick={() =>{handleEdit();setActiveMenu(value=>!value)}} className="eventMenuItem">Izmeni</button>}
+                                {handleDelete && <button onClick={() =>{handleDelete();setActiveMenu(value=>!value)}} className="eventMenuItem">Obriši</button>}
+                                {handleDelete && <button onClick={() => setActiveMenu(value=>!value)} className="eventMenuItem">Otkaži</button>}
                         </div>
                     </div>
                 

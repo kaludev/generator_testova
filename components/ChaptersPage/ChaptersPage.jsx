@@ -10,7 +10,7 @@ import Link from 'next/link';
 const ChaptersPage = ({loading,chapters,setChapters,subject,classes,classId,subjectId}) => {
   const [overlay, setOverlay] = useState(false);
   const [chapterName,setChapterName] = useState('');
-
+  const [edit,setEdit] = useState(null);
   const handleSubmit = async (e) =>{
     const res = await fetch('/api/chapter/create', {
         method: 'POST',
@@ -33,10 +33,23 @@ const ChaptersPage = ({loading,chapters,setChapters,subject,classes,classId,subj
     setOverlay(false);
 }
 const handleEdit = (id) => {
-  console.log(id);
+  setEdit(id);
+  const chapter = chapters.find((e) => e._id == id);
+  setChapterName(chapter.name);
+  setOverlay(value => !value);
 }
-const handleDelete = (id) => {
-  console.log(id);
+const handleDelete = async (id) => {
+  const res = await fetch("/api/chapter/delete/" + id);
+
+  const data = await res.json();
+  if(!data.ok) {
+    toast.error('Greska pri brisanju oblasti:', data.message);
+  }else{
+    toast.success('Uspešno obrisana oblast');
+  }
+  const copy = [...chapters];
+  const filtered = copy.filter((value) => value._id !=id )
+  setChapters(filtered);
 }
 const handleChange = (e) => {
     setChapterName(e.target.value);
@@ -50,11 +63,11 @@ const handleChange = (e) => {
       </div>
       <div className={styles.cardsNavigationSection}>
         <div className={styles.cardsNavigation}><Link href="/subjects"><FaArrowLeft /></Link></div>
-        {classes?.code && (!overlay && <div className={styles.cardsNavigation} onClick={() => {setOverlay(value => !value);}}><FaPlus /></div>)}
+        {classes?.code && (!overlay && <div className={styles.cardsNavigation} onClick={() => {setEdit(null);setChapterName("");setOverlay(value => !value);}}><FaPlus /></div>)}
       </div>
       {overlay && <div className={overlayStyles.overlay}> 
                     <input type="text" className={overlayStyles.inputCode} value={chapterName} placeholder="Unesite naziv testa" onChange={handleChange} autoFocus/> 
-                    <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleSubmit}>Kreiraj Test</button>
+                    <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleSubmit}>{edit? "Izmeni" : "Kreiraj"} Test</button>
                     <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
       </div>}
         <div className={styles.cardsSection}>

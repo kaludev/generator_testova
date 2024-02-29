@@ -4,7 +4,7 @@ import statusCodes from 'http-status-codes'
 import Chapter from "@models/chapter";
 import Question from "@models/question";
 
-export const POST = async (request) =>{
+export const GET = async (request,{params}) =>{
     try{
         const session = await getServerSession(authOptions)
         if(!session.user){
@@ -13,17 +13,20 @@ export const POST = async (request) =>{
                 message: "Morate biti ulogovani"
             }),{status: statusCodes.UNAUTHORIZED})
         }
-        const data = await request.json();
-        const question= {
-            question:data.question,
-            author:session.user._id
+        if(!session.user.isSuperAdmin){
+            return new Response(JSON.stringify({
+                ok:false,
+                message:"Morate biti Miloye"
+            }),{status: statusCodes.UNAUTHORIZED});
         }
-        const chapter = await Question.create(question);
-        await Chapter.findByIdAndUpdate(data.id,{$addToSet:{questions:chapter._id}})
-        return new Response(JSON.stringify({
-            ok:true, 
-            data: chapter
-        }),{status: statusCodes.OK});
+        const id = params.id;
+        
+        const chapter = await Chapter.findByIdAndDelete(id);
+        console.log(chapter.questions);
+        await Question.deleteMany({_id: {
+            $in: chapter.questions
+          }})
+        return new Response(JSON.stringify({ok:true}),{status: statusCodes.OK})
     }catch (e) {
         return new Response(JSON.stringify({
             ok:false,
