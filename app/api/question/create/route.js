@@ -14,13 +14,15 @@ export const POST = async (request) =>{
             }),{status: statusCodes.UNAUTHORIZED})
         }
         const data = await request.json();
+        console.log(session.user)
         const question= {
             question:data.question,
             author:session.user._id
         }
         const chapter = await Question.create(question);
+        await Chapter.findByIdAndUpdate(data.id,{$addToSet:{questions:chapter._id}})
         return new Response(JSON.stringify({
-            ok:true,
+            ok:true, 
             data: chapter
         }),{status: statusCodes.OK});
     }catch (e) {

@@ -19,12 +19,12 @@ const ChapterPage = ({data}) => {
     const res = await fetch('/api/question/create',{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({question:question})
+      body: JSON.stringify({question:question,id:data._id})
     });
-    const data = await res.json();
+    const fetchData = await res.json();
 
-    if(!data.ok){
-        toast.error("Greška: "+ data.message);
+    if(!fetchData.ok){
+        toast.error("Greška: "+ fetchData.message);
     }else{
         toast.success("Uspešno dodato pitanje");
     }
@@ -47,8 +47,8 @@ const ChapterPage = ({data}) => {
         session?.user.isVerified ?
         <div action="" className={styles.cardForm}>
           <img src="" className={styles.profileImage} width={50} height={50}/>
-          <input type="text"  className={styles.inputText} placeholder='Postavite pitanje za test'/>
-          <button  className={styles.cardFormSubmit}><FaLocationArrow/></button>
+          <input type="text"  className={styles.inputText}  value={question} onChange={handleChange} placeholder='Postavite pitanje za test'/>
+          <button  className={styles.cardFormSubmit} onClick={handleSubmit}><FaLocationArrow/></button>
         </div>
         :
         ""

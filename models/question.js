@@ -13,8 +13,11 @@ const questionSchema = new Schema({
     verified:{
         type: Boolean,
         default: false
+    },author:{
+        type: Schema.Types.ObjectId,
+        required:true,
+        ref:'User'
     }
-    
 
 });
 

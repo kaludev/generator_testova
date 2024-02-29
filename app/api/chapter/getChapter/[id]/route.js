@@ -15,7 +15,7 @@ export const GET = async (request,{params}) =>{
     }
     if(!session.user.isSuperAdmin){
         const id = params.id;
-        const chapter = await Chapter.findById(id,{_id:1,name:1,classId:1,subjectId:1}).populate('classId',{_id:0,name:1,numOfAttenders:1}).populate('subjectId').populate({path:'questions',match:{author:session?.user._id}});
+        const chapter = await Chapter.findById(id,{_id:1,name:1,classId:1,subjectId:1}).populate('classId',{_id:0,name:1,numOfAttenders:1}).populate('subjectId').populate({path:'questions',match:{author:session?.user._id},populate:'author'});
 
         if(!chapter){
             return new Response(JSON.stringify({
