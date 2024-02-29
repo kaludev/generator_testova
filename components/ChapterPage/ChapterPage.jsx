@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import "react-toastify/dist/ReactToastify.css";
 import {toast} from 'react-toastify';
+import Image from 'next/image';
 
 const ChapterPage = ({data}) => {
   const {data:session} = useSession();
@@ -46,14 +47,13 @@ const ChapterPage = ({data}) => {
         :
         session?.user.isVerified ?
         <div action="" className={styles.cardForm}>
-          <img src="" className={styles.profileImage} width={50} height={50}/>
+          <Image src={session?.user.image} className={styles.profileImage} width={50} height={50}/>
           <input type="text"  className={styles.inputText}  value={question} onChange={handleChange} placeholder='Postavite pitanje za test'/>
           <button  className={styles.cardFormSubmit} onClick={handleSubmit}><FaLocationArrow/></button>
         </div>
         :
         ""
         }
-        <CommentCard/>
           {data?.questions ? data?.questions.map( question =><CommentCard question={question}/>) : <div className="loading">Učitavanje...</div>
           }
       </div>
