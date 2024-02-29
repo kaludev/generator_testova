@@ -47,14 +47,14 @@ const ChapterPage = ({data}) => {
         :
         session?.user.isVerified ?
         <div action="" className={styles.cardForm}>
-          <Image src={session?.user.image} className={styles.profileImage} width={50} height={50}/>
+          <Image src={session?.user.image} alt='Profile' className={styles.profileImage} width={50} height={50}/>
           <input type="text"  className={styles.inputText}  value={question} onChange={handleChange} placeholder='Postavite pitanje za test'/>
           <button  className={styles.cardFormSubmit} onClick={handleSubmit}><FaLocationArrow/></button>
         </div>
         :
         ""
         }
-          {data?.questions ? data?.questions.map( question =><CommentCard question={question}/>) : <div className="loading">Učitavanje...</div>
+          {data?.questions ? data?.questions.map( question =><CommentCard key={question?._id} question={question}/>) : <div className="loading">Učitavanje...</div>
           }
       </div>
     </div>

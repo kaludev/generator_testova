@@ -6,17 +6,17 @@ import Link from "next/link"
 import Image from "next/image"
 import { FaEllipsisV } from "react-icons/fa";
 export default function CommentCard({question}){
-
+    console.log(question)
     const[activeMenu, setActiveMenu] = useState(false);
     return(
        
         <div className={styles.cardEvent}>
-                <Image src={question?.author?.image} className={styles.profileImage} width={50} height={50}/>
+                <Image src={question?.author?.image} alt="profile" className={styles.profileImage} width={50} height={50}/>
                 <div className={styles.eventMain}>
                     <div className={styles.eventName}>{question?.author?.name}</div>
                     <div className={styles.eventUsername}>{question?.question}</div>
                 </div>
-            <FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>
+            {question.points!=undefined ? (<FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>) : ""}
             <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
                 {<button className="eventMenuItem">Ukloni</button>}
                 {<button className="eventMenuItem">Izmeni</button>}
