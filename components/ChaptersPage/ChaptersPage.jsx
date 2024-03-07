@@ -12,24 +12,41 @@ const ChaptersPage = ({loading,chapters,setChapters,subject,classes,classId,subj
   const [chapterName,setChapterName] = useState('');
   const [edit,setEdit] = useState(null);
   const handleSubmit = async (e) =>{
-    const res = await fetch('/api/chapter/create', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ name: chapterName,classId:classId,subjectId:subjectId})
-    });
-    const data = await res.json();
-    if(!data.ok){
-        toast.error("Greška: " + data.message);
-    }else{
-        toast.success("Kreirano odeljenje: " + data.data.name);
+    if(edit){
+      const res = await fetch('/api/chapter/edit', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({id:edit,name: chapterName,classId:classId,subjectId:subjectId})
+      });
+      const data = await res.json();
+      if(!data.ok){
+          toast.error("Greška: " + data.message);
+      }else{
         const copy = [...chapters];
-
-        copy.push(data.data);
-
+        toast.success("Izmenjeno odeljenje: "+data.data.name+ " -> " + chapterName);
+        copy.find((value) =>value._id==edit).name =chapterName
         setChapters(copy);
         setChapterName("");
+      }
+    }else{ 
+      const res = await fetch('/api/chapter/create', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ name: chapterName,classId:classId,subjectId:subjectId})
+      });
+      const data = await res.json();
+      if(!data.ok){
+          toast.error("Greška: " + data.message);
+      }else{
+          toast.success("Kreirano odeljenje: " + data.data.name);
+          const copy = [...chapters];
+
+          copy.push(data.data);
+
+          setChapters(copy);
+          setChapterName("");
+      }
     }
-    
     setOverlay(false);
 }
 const handleEdit = (id) => {
