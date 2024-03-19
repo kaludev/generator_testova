@@ -5,7 +5,7 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { FaEllipsisV } from "react-icons/fa";
-export default function AttenderCard({attender}){
+export default function AttenderCard({handleDelete,attender}){
 
     const[activeMenu, setActiveMenu] = useState(false);
     return(
@@ -20,7 +20,7 @@ export default function AttenderCard({attender}){
             </a>
             <FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>
             <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
-                {<button className="eventMenuItem">Ukloni</button>}
+                {<button onClick={() => {setActiveMenu(false);handleDelete()}} className="eventMenuItem">Ukloni</button>}
                 {<button onClick={() => setActiveMenu(false)} className="eventMenuItem">Otkaži</button>}
             </div>
         </div>

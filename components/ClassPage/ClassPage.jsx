@@ -2,8 +2,24 @@ import AttenderCard from '@components/AttenderCard/AttenderCard'
 import styles from './ClassPage.module.css'
 import { FaRegClone, FaArrowLeft } from "react-icons/fa";
 import Link from 'next/link';
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from 'react-toastify';
 
-const ClassPage = ({data}) => {
+const ClassPage = ({data,setData}) => {
+  const handleDelete = async id => {
+      const res = await fetch('/api/class/remove/' + id);
+      const fetchData = await res.json();
+
+      if(!fetchData.ok) {
+        toast.error('Greska pri brisanju ucenika:', fetchData.message);
+      }else{
+        toast.success('Uspešno obrisan ucenik');
+      }
+      const copy = {...data};
+      console.log(copy);
+      copy.attendees = copy.attendees.filter((value) => value._id !=id )
+      setData(copy);
+  }
   return (
     <div className={styles.cardsMainSection}>
       <div className={styles.cardsHeaderSection}>
@@ -15,7 +31,7 @@ const ClassPage = ({data}) => {
         <div className={styles.cardsNavigation}><Link href="/classes"><FaArrowLeft /></Link></div>
       </div>
       <div className={styles.cardsSection}>
-          {data?.attendees ? data?.attendees.map( attender =>  <AttenderCard attender={attender}/>) : <div className="loading">Učitavanje...</div>}
+          {data?.attendees ? data?.attendees.map( attender =>  <AttenderCard handleDelete={() => {handleDelete(attender._id)}} attender={attender}/>) : <div className="loading">Učitavanje...</div>}
       </div>
     </div>
   )
