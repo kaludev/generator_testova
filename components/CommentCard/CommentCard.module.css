@@ -1,7 +1,7 @@
 .cardEvent {
     width: 100%;
     position: relative;
-    min-height: 70px;
+    /* min-height: 70px; edit button bug*/
     height: fit-content;
     display: flex;
     flex-direction: row;
@@ -22,20 +22,20 @@
 
 .eventName {
     width: 100%;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 16px;
 }
 
 .eventUsername{
     width: 100%;
     font-size: 14px;
+    font-weight: 500;
 }
 
 .profileImage{
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    margin: 10px 20px 0 0;
+    margin: 5px 20px 0 0;
 }
 
 .cardLeft{

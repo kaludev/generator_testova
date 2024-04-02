@@ -13,8 +13,8 @@ export default function CommentCard({question}){
         <div className={styles.cardEvent}>
                 <Image src={question?.author?.image} alt="profile" className={styles.profileImage} width={50} height={50}/>
                 <div className={styles.eventMain}>
-                    <div className={styles.eventName}>{question?.author?.name}</div>
-                    <div className={styles.eventUsername}>{question?.question}</div>
+                    <div className={styles.eventUsername}>{question?.author?.name}</div>
+                    <div className={styles.eventName}>{question?.question}</div>
                 </div>
             {question.points!=undefined ? (<FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>) : ""}
             <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
