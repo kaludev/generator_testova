@@ -23,7 +23,7 @@ const Class = () => {
         fetchData();
     },[])
     return (
-        data && <ClassPage data={data}/>
+        data && <ClassPage setData={setData} data={data}/>
     )
 }
 

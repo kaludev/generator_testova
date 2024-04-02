@@ -14,7 +14,7 @@ export default function SubjectSection(){
     const [subjects, setSubjects] = useState([]);
     const [overlay, setOverlay] = useState(false);
     const [classes, setClasses] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [chosenClasses , setChosenClasses] = useState([]);
     useEffect(() =>{
         const fetchData = async () => {
@@ -37,19 +37,18 @@ export default function SubjectSection(){
         classes: []
     });
     useEffect(() =>{
-        setLoading(true)
+        
         const fetchData = async () => {
+            await setLoading(true);
             const res = await fetch('/api/subject/getSubjects');
             const data = await res.json();
             if(!data.ok){
                 toast.error("Greška: "+ data.message );
             }else{
                 console.log(data.data)
-
-                setLoading(value=>!value);
-                setSubjects(data.data);
-                
+                await setSubjects(data.data);
             }
+            await setLoading(false);
         };
         fetchData();
     },[])
@@ -112,10 +111,10 @@ export default function SubjectSection(){
 
                                 {!overlay && <button className={`${cardStyles.cardEvent} ${cardStyles.createEvent}`} onClick={() => {setOverlay(value => !value);}}><FaPlus /></button>}
                             
-                            {loading ? subjects.length>0 ? subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> : <div className="loading">Učitavanje...</div>}
+                            {!loading ? subjects.length>0 ? subjects.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> : <div className="loading">Učitavanje...</div>}
                         </div>
                     ) : <div className={styles.cardsSection}>
-                        {loading ? subjects.length>0 ? subjects?.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> : <div className="loading">Učitavanje...</div>}
+                        {!loading ? (subjects.length>0 ? subjects?.map(oneSubject => <SubjectCard key={oneSubject._id} subject={oneSubject}/>) : <div>Nema Odeljenja</div> ): <div className="loading">Učitavanje...</div>}
                     </div>
                 }
                 

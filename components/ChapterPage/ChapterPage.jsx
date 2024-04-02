@@ -1,4 +1,5 @@
 import styles from './ChapterPage.module.css'
+import overlayStyles from '../ClassSection/ClassSection.module.css'
 import { FaArrowLeft, FaLocationArrow } from "react-icons/fa";
 import Link from 'next/link';
 import CommentCard from '@components/CommentCard/CommentCard';
@@ -10,10 +11,16 @@ import Image from 'next/image';
 
 const ChapterPage = ({data,setData}) => {
   const {data:session} = useSession();
+  const [overlay, setOverlay] = useState(false);
   const [question, setQuestion] = useState('')
   const [loading, setLoading] = useState(false);
   const handleChange = e =>{
     setQuestion(e.target.value);
+  }
+  const handleOverlayChange = e =>{
+    const copy= {...question};
+    copy[e.target.name] = e.target.value;
+    setQuestion(copy);
   }
 
   const handleSubmit = async () =>{
@@ -22,17 +29,63 @@ const ChapterPage = ({data,setData}) => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({question:question,id:data._id})
     });
-    const copy = {...data}
-    copy?.questions?.push({question:question,_id:data._id,author:session?.user})
-    setData(copy);
+    
     const fetchData = await res.json();
 
     if(!fetchData.ok){
         toast.error("Greška: "+ fetchData.message);
     }else{
         toast.success("Uspešno dodato pitanje");
+        const copy = {...data}
+        copy?.questions?.push({question:question,_id:data._id,author:session?.user})
+        setData(copy);
     }
     await setLoading(false);
+  }
+  const handleEditing = async () => {
+    await setLoading(true);
+    await setOverlay(false);
+    const res = await fetch('/api/question/edit',{
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({question:question})
+    });
+    
+    const fetchData = await res.json();
+
+    if(!fetchData.ok){
+        toast.error("Greška: "+ fetchData.message);
+    }else{
+      const copy = {...data}
+      const quest = copy?.questions?.find(question => question._id == fetchData.data._id);
+      console.log(question);
+      quest.question = question.question;
+      quest.verified = true;
+      quest.points = question.points;
+      setData(copy);
+      toast.success("Uspešno dodato pitanje");
+    }
+    
+    await setLoading(false);
+
+  }
+
+  const handleEdit = async (id) => {
+    setOverlay(true);
+    setQuestion(data?.questions?.find(question => question._id == id));
+  }
+  const handleDelete = async (id) => {
+    const res = await fetch("/api/chapter/delete/" + id);
+
+    const data = await res.json();
+    if(!data.ok) {
+      toast.error('Greska pri brisanju oblasti:', data.message);
+    }else{
+      toast.success('Uspešno obrisana oblast');
+    }
+    const copy = [...chapters];
+    const filtered = copy.filter((value) => value._id !=id )
+    setChapters(filtered);
   }
   return(
        
@@ -52,7 +105,14 @@ const ChapterPage = ({data,setData}) => {
           <button  className={styles.cardFormSubmit} onClick={handleSubmit}><FaLocationArrow/></button>
         </div>
         }
-          {data?.questions ? data?.questions.map( question =><CommentCard key={question?._id} question={question}/>) : <div className="loading">Učitavanje...</div>
+        {overlay && <div className={overlayStyles.overlay}> 
+                    <input type="text" className={overlayStyles.inputCode} name="question" value={question?.question} placeholder="Promenite pitanje" onChange={handleOverlayChange} autoFocus/> 
+                    <input type="number" className={overlayStyles.inputCode} name="points" id="points" value={question?.points} onChange={handleOverlayChange} placeholder="poeni"/>
+                    <p className={styles.desc}>Izmenjivanjem pitanja automatski odobravate da pitanje bude na testu</p>
+                    <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleEditing}>Izmeni Pitanje</button>
+                    <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
+      </div>}
+          {data?.questions ? data?.questions.map( question =><CommentCard key={question?._id} handleEdit={() =>{handleEdit(question?._id)}} handleDelete={ () => handleDelete(question._id)} question={question}/>) : <div className="loading">Učitavanje...</div>
           }
       </div>
     </div>
