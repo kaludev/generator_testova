@@ -15,16 +15,18 @@ export default function CommentCard({question,handleDelete,handleEdit}){
                     <div className={styles.eventUsername}>{question?.author?.name}</div>
                     <div className={styles.eventName}>{question?.question}</div>
                 </div>
-                {question?.points!=undefined && <div className={styles.eventMain}>
-                    <div className={styles.eventName}>Poena: {question?.points}</div>
-                    <div className={styles.eventUsername} style={{color:question?.verified?"green": "red"}}>{question?.verified?<FaCheck/>: <FaTimes/>}</div>
+            <div className={styles.eventRight}>
+                {question?.points!=undefined && <div className={styles.eventInfo}>
+                        <div className={styles.eventName}>Poena: {question?.points}</div>
+                        <div className={styles.eventCheck} style={{color:question?.verified?"green": "red"}}>{question?.verified?<FaCheck/>: <FaTimes/>}</div>
+                    </div>
+                    }
+                {question.points!=undefined ? (<FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>) : ""}
+                <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
+                    {<button className="eventMenuItem" onClick={() =>{setActiveMenu(false);handleDelete()}}>Ukloni</button>}
+                    {<button className="eventMenuItem" onClick={() =>{setActiveMenu(false);handleEdit()}}>Izmeni</button>}
+                    {<button onClick={() => setActiveMenu(false)} className="eventMenuItem">Otkaži</button>}
                 </div>
-                }
-            {question.points!=undefined ? (<FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>) : ""}
-            <div className={`eventMenu ${activeMenu ? "active" : ""}`}>
-                {<button className="eventMenuItem" onClick={() =>{setActiveMenu(false);handleDelete()}}>Ukloni</button>}
-                {<button className="eventMenuItem" onClick={() =>{setActiveMenu(false);handleEdit()}}>Izmeni</button>}
-                {<button onClick={() => setActiveMenu(false)} className="eventMenuItem">Otkaži</button>}
             </div>
         </div>
     )

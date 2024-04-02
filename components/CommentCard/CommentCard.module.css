@@ -52,3 +52,18 @@
     color: var(--main-color);
 }
 
+.eventRight{
+    display: flex;
+    flex-direction: row;
+}
+
+.eventInfo{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.eventCheck{
+    /* margin: auto 5px; */
+    font-size: 20px;
+}
