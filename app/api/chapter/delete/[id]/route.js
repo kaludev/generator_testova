@@ -21,11 +21,8 @@ export const GET = async (request,{params}) =>{
         }
         const id = params.id;
         
-        const chapter = await Chapter.findByIdAndDelete(id);
-        console.log(chapter.questions);
-        await Question.deleteMany({_id: {
-            $in: chapter.questions
-          }})
+        const question = await Question.findByIdAndDelete(id);
+        
         return new Response(JSON.stringify({ok:true}),{status: statusCodes.OK})
     }catch (e) {
         return new Response(JSON.stringify({

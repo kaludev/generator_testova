@@ -77,15 +77,17 @@ const ChapterPage = ({data,setData}) => {
   const handleDelete = async (id) => {
     const res = await fetch("/api/chapter/delete/" + id);
 
-    const data = await res.json();
-    if(!data.ok) {
+    const fetchData = await res.json();
+    if(!fetchData.ok) {
       toast.error('Greska pri brisanju oblasti:', data.message);
     }else{
-      toast.success('Uspešno obrisana oblast');
+      toast.success('Uspešno obrisano pitanje');
     }
-    const copy = [...chapters];
-    const filtered = copy.filter((value) => value._id !=id )
-    setChapters(filtered);
+    const copy = {...data}
+    console.log(copy)
+    const filtered = copy?.questions?.filter((value) => value._id !=id );
+    copy.questions = filtered;
+    setData(copy);
   }
   return(
        
