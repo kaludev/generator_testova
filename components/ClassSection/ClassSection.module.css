@@ -35,6 +35,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 85px;
     background-color: var(--body-background);
     z-index: 2;
 }

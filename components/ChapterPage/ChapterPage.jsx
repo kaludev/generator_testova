@@ -43,6 +43,7 @@ const ChapterPage = ({data,setData}) => {
         setData(copy);
     }
     await setLoading(false);
+    setQuestion('');
   }
   const handleEditing = async () => {
     await setLoading(true);
@@ -116,7 +117,7 @@ const ChapterPage = ({data,setData}) => {
         </div>
         }
         {overlay && <div className={overlayStyles.overlay}> 
-                    <input type="text" className={overlayStyles.inputCode} name="question" value={question?.question} placeholder="Promenite pitanje" onChange={handleOverlayChange} autoFocus/> 
+                    <textarea className={overlayStyles.inputCode} name="question" value={question?.question} placeholder="Promenite pitanje" onChange={handleOverlayChange} autoFocus spellcheck="false" textarea/> 
                     <input type="number" className={overlayStyles.inputCode} name="points" id="points" value={question?.points} onChange={handleOverlayChange} placeholder="poeni"/>
                     <p className={styles.desc}>Izmenjivanjem pitanja automatski odobravate da pitanje bude na testu</p>
                     <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleEditing}>Izmeni Pitanje</button>

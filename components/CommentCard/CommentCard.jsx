@@ -17,8 +17,8 @@ export default function CommentCard({question,handleDelete,handleEdit}){
                 </div>
             <div className={styles.eventRight}>
                 {question?.points!=undefined && <div className={styles.eventInfo}>
-                        <div className={styles.eventName}>Poena: {question?.points}</div>
                         <div className={styles.eventCheck} style={{color:question?.verified?"green": "red"}}>{question?.verified?<FaCheck/>: <FaTimes/>}</div>
+                        <div className={styles.eventPoints}>{question?.points}</div>
                     </div>
                     }
                 {question.points!=undefined ? (<FaEllipsisV className={styles.cardRight} onClick={() => setActiveMenu(true)}/>) : ""}
