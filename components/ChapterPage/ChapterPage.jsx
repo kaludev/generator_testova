@@ -41,6 +41,7 @@ const ChapterPage = ({data,setData}) => {
         setData(copy);
     }
     await setLoading(false);
+    setQuestion('');
   }
   const handleEditing = async () => {
     await setLoading(true);
