@@ -76,7 +76,7 @@ const handleChange = (e) => {
       <div className={styles.cardsHeaderSection}>
           <div className={styles.name}>{subject?.name} {classes?.name}</div>
           {classes?.code && <div className={styles.code}>{classes?.code} <FaRegClone className={styles.copy} onClick={() => {navigator.clipboard.writeText(classes?.code)}}/></div>}
-          {classes?.numOfAttenders && <div className={styles.attendees}>Broj učenika: {classes?.numOfAttenders} </div>}
+          {classes?.numOfAttenders!=undefined && <div className={styles.attendees}>Broj učenika: {classes?.numOfAttenders} </div>}
       </div>
       <div className={styles.cardsNavigationSection}>
         <div className={styles.cardsNavigation}><Link href="/subjects"><FaArrowLeft /></Link></div>

@@ -1,6 +1,6 @@
 import styles from './ChapterPage.module.css'
 import overlayStyles from '../ClassSection/ClassSection.module.css'
-import { FaArrowLeft, FaLocationArrow } from "react-icons/fa";
+import { FaArrowLeft, FaLocationArrow, FaPlus } from "react-icons/fa";
 import Link from 'next/link';
 import CommentCard from '@components/CommentCard/CommentCard';
 import { useSession } from 'next-auth/react';
@@ -12,6 +12,8 @@ import Image from 'next/image';
 const ChapterPage = ({data,setData}) => {
   const {data:session} = useSession();
   const [overlay, setOverlay] = useState(false);
+  const [create, setCreate] = useState(false);
+  const [questions, setQuestions] = useState([{points:0,num:0}])
   const [question, setQuestion] = useState('')
   const [loading, setLoading] = useState(false);
   const handleChange = e =>{
@@ -89,6 +91,10 @@ const ChapterPage = ({data,setData}) => {
     copy.questions = filtered;
     setData(copy);
   }
+
+  const handleGenerating =() =>{
+    
+  }
   return(
        
     <div className={styles.cardsMainSection}>
@@ -98,10 +104,12 @@ const ChapterPage = ({data,setData}) => {
       </div>
       <div className={styles.cardsNavigationSection}>
         <div className={styles.cardsNavigation}><Link href={"/subjects/" + data?.subjectId?._id + (data?.classId?._id ? "/"+ data?.classId?._id: "")  }><FaArrowLeft /></Link></div>
+        {!create && <div className={styles.cardsNavigation} onClick={() => {setCreate(value => !value);}}><FaPlus /></div>}
       </div>
+
       <div className={styles.cardsSection}>
         {
-        session?.user.isVerified &&<div action="" className={styles.cardForm}>
+        (session?.user.isVerified || session?.user.isSuperAdmin) &&<div action="" className={styles.cardForm}>
           <Image src={session?.user.image} alt='Profile' className={styles.profileImage} width={50} height={50}/>
           <input type="text"  className={styles.inputText}  value={question} onChange={handleChange} placeholder='Postavite pitanje za test'/>
           <button  className={styles.cardFormSubmit} onClick={handleSubmit}><FaLocationArrow/></button>
@@ -114,6 +122,17 @@ const ChapterPage = ({data,setData}) => {
                     <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleEditing}>Izmeni Pitanje</button>
                     <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
       </div>}
+        {create && <div className={overlayStyles.overlay}> 
+                      {questions.map(question=> <>
+                        <input type="number" className={overlayStyles.inputCode} name="question" value={question?.question} placeholder="Promenite pitanje" onChange={handleOverlayChange} autoFocus/> 
+                          <input type="number" className={overlayStyles.inputCode} name="points" id="points" value={question?.points} onChange={handleOverlayChange} placeholder="poeni"/>
+                      </>
+                      )}
+                      
+                      
+                      <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleGenerating}>Izmeni Pitanje</button>
+                      <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setCreate(value => !value)}} >Odustani</button>
+        </div>}
           {data?.questions ? data?.questions.map( question =><CommentCard key={question?._id} handleEdit={() =>{handleEdit(question?._id)}} handleDelete={ () => handleDelete(question._id)} question={question}/>) : <div className="loading">Učitavanje...</div>
           }
       </div>
