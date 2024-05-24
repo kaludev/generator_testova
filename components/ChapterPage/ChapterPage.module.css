@@ -2,11 +2,11 @@
     width: 100%;
     max-width: 300px;
     position: relative;
-    height: 200px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    margin: 20px;
+    margin: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #fff;
 }

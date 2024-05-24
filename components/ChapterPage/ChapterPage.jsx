@@ -4,7 +4,7 @@ import { FaArrowLeft, FaLocationArrow, FaPlus } from "react-icons/fa";
 import Link from 'next/link';
 import CommentCard from '@components/CommentCard/CommentCard';
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import "react-toastify/dist/ReactToastify.css";
 import {toast} from 'react-toastify';
 import Image from 'next/image';
@@ -13,8 +13,9 @@ const ChapterPage = ({data,setData}) => {
   const {data:session} = useSession();
   const [overlay, setOverlay] = useState(false);
   const [create, setCreate] = useState(false);
-  const [questions, setQuestions] = useState([{points:0,num:0}])
+  const [questions, setQuestions] = useState([{points:"",num:""}])
   const [question, setQuestion] = useState('')
+  const [numOfTests,setNumOfTests] = useState("");
   const [loading, setLoading] = useState(false);
   const handleChange = e =>{
     setQuestion(e.target.value);
@@ -25,6 +26,11 @@ const ChapterPage = ({data,setData}) => {
     setQuestion(copy);
   }
 
+  const handleCreateChange = e =>{
+    const copy= [...questions];
+    copy[e.target.getAttribute('data-index')][e.target.name] = parseInt(e.target.value);
+    setQuestions(copy);
+  }
   const handleSubmit = async () =>{
     const res = await fetch('/api/question/create',{
       method: 'POST',
@@ -66,11 +72,11 @@ const ChapterPage = ({data,setData}) => {
       quest.verified = true;
       quest.points = question.points;
       setData(copy);
-      toast.success("Uspešno dodato pitanje");
+      toast.success("Uspešno promenjeno pitanje");
     }
-    
+    await setQuestion("");
     await setLoading(false);
-
+    
   }
 
   const handleEdit = async (id) => {
@@ -92,7 +98,20 @@ const ChapterPage = ({data,setData}) => {
     copy.questions = filtered;
     setData(copy);
   }
-
+  const handleAdd = () => {
+    const copy = [...questions];
+    copy.push({points:"",num:""});
+    setQuestions(copy);
+  }
+  const handleRemove = (index) => {
+    const copy = [...questions];
+    console.log(index);
+    copy.splice(index,1);
+    setQuestions(copy);
+  }
+  const handleNumChange = (e) =>{
+    setNumOfTests(e.target.value);
+  }
   const handleGenerating =() =>{
     
   }
@@ -110,7 +129,7 @@ const ChapterPage = ({data,setData}) => {
 
       <div className={styles.cardsSection}>
         {
-        (session?.user.isVerified || session?.user.isSuperAdmin) &&<div action="" className={styles.cardForm}>
+        (session?.user.isVerified || session?.user.isSuperAdmin) &&<div className={styles.cardForm}>
           <Image src={session?.user.image} alt='Profile' className={styles.profileImage} width={50} height={50}/>
           <input type="text"  className={styles.inputText}  value={question} onChange={handleChange} placeholder='Postavite pitanje za test'/>
           <button  className={styles.cardFormSubmit} onClick={handleSubmit}><FaLocationArrow/></button>
@@ -121,17 +140,22 @@ const ChapterPage = ({data,setData}) => {
                     <input type="number" className={overlayStyles.inputCode} name="points" id="points" value={question?.points} onChange={handleOverlayChange} placeholder="poeni"/>
                     <p className={styles.desc}>Izmenjivanjem pitanja automatski odobravate da pitanje bude na testu</p>
                     <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleEditing}>Izmeni Pitanje</button>
-                    <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value)}} >Odustani</button>
+                    <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setOverlay(value => !value);setQuestion("")}} >Odustani</button>
       </div>}
         {create && <div className={overlayStyles.overlay}> 
-                      {questions.map(question=> <>
-                        <input type="number" className={overlayStyles.inputCode} name="question" value={question?.question} placeholder="Promenite pitanje" onChange={handleOverlayChange} autoFocus/> 
-                          <input type="number" className={overlayStyles.inputCode} name="points" id="points" value={question?.points} onChange={handleOverlayChange} placeholder="poeni"/>
-                      </>
-                      )}
+                      <div className={overlayStyles.cardsSection}>
+                        {questions.map((question,index)=> <div className={styles.cardEvent} key={index}>
+                            
+                            <p>Broj pitanja:</p><input type="number" data-index={index} key={(index*2)} className={overlayStyles.inputCode} name="num" value={question?.num} placeholder="Broj pitanja" onChange={handleCreateChange} autoFocus/> 
+                            <p>Broj poena:</p><input type="number" data-index={index} key={(index*2+1)} className={overlayStyles.inputCode} name="points" id="points" value={question?.points} onChange={handleCreateChange} placeholder="Poeni"/>
+                            <button className={`primaryButton`} onClick={() =>{handleRemove(index)}}>Obrisi</button>
+                        </div>
+                        )}
+                      </div>
+                      <input type="number" className={overlayStyles.inputCode} name="num" value={numOfTests} placeholder="Broj testova" onChange={handleNumChange}/>
                       
-                      
-                      <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleGenerating}>Izmeni Pitanje</button>
+                      <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleAdd}><FaPlus /></button>
+                      <button className={`${overlayStyles.primaryButton} primaryButton`} onClick={handleGenerating}>Generisi test</button>
                       <button className={`${overlayStyles.secondaryButton} secondaryButton`} onClick={() =>{setCreate(value => !value)}} >Odustani</button>
         </div>}
           {data?.questions ? data?.questions.map( question =><CommentCard key={question?._id} handleEdit={() =>{handleEdit(question?._id)}} handleDelete={ () => handleDelete(question._id)} question={question}/>) : <div className="loading">Učitavanje...</div>
